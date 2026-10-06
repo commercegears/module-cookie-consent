@@ -113,7 +113,11 @@
     }
 
     function activateBlocked() {
-        var nodes = Array.prototype.slice.call(d.querySelectorAll('[data-sw-consent]')).filter(function (n) {
+        // Only markup that is really waiting: a normal script that merely carries the attribute must not run twice.
+        var nodes = Array.prototype.slice.call(d.querySelectorAll(
+            'script[type="text/plain"][data-sw-consent], [data-sw-consent][data-sw-src], '
+            + '[data-sw-consent][data-sw-srcset], [data-sw-consent][data-sw-href]'
+        )).filter(function (n) {
             return !n.hasAttribute('data-sw-consent-done') && allowed(n);
         });
         nodes.forEach(function (n) { n.setAttribute('data-sw-consent-done', '1'); });
@@ -124,12 +128,55 @@
                 activateScript(n, next);
                 return;
             }
-            if (n.hasAttribute('data-sw-src')) {
-                n.setAttribute('src', n.getAttribute('data-sw-src'));
-                n.removeAttribute('data-sw-src');
+            ['srcset', 'src', 'href'].forEach(function (name) {
+                if (n.hasAttribute('data-sw-' + name)) {
+                    n.setAttribute(name, n.getAttribute('data-sw-' + name));
+                    n.removeAttribute('data-sw-' + name);
+                }
+            });
+            if (n.tagName === 'SOURCE' && n.parentNode && typeof n.parentNode.load === 'function') {
+                n.parentNode.load();
             }
             next();
         })();
+    }
+
+    /* ---------------------------------------------------------------- cookie clean-up */
+
+    // Never touched, whatever is configured: Magento session, form key, cache and consent cookies.
+    var PROTECTED = /^(PHPSESSID|form_key|sw_consent|private_content_version|X-Magento-Vary|section_data_ids|store|mage-.*|persistent_shopping_cart|login_redirect|admin)$/;
+
+    function cookieMatches(name, pattern) {
+        return pattern.slice(-1) === '*' ? name.indexOf(pattern.slice(0, -1)) === 0 : name === pattern;
+    }
+
+    function expireCookie(name) {
+        var host = location.hostname.split('.'), paths = ['/', location.pathname.replace(/[^/]*$/, '') || '/'], i, j;
+        for (i = 0; i < host.length - 1; i++) {
+            for (j = 0; j < paths.length; j++) {
+                d.cookie = name + '=; Max-Age=0; path=' + paths[j] + '; domain=.' + host.slice(i).join('.');
+            }
+        }
+        for (j = 0; j < paths.length; j++) {
+            d.cookie = name + '=; Max-Age=0; path=' + paths[j];
+        }
+    }
+
+    /**
+     * Deletes first-party cookies of refused categories (Cookie Categories > Cookies to Delete When Refused).
+     * Only runs once the visitor has made a choice: before that, Consent Mode may legitimately allow them.
+     */
+    function cleanupCookies() {
+        if (!api.state || !c.cleanup) { return; }
+        var names = d.cookie ? d.cookie.split(/;\s*/).map(function (pair) { return pair.split('=')[0]; }) : [];
+        Object.keys(c.cleanup).forEach(function (code) {
+            if (api.has(code)) { return; }
+            names.forEach(function (name) {
+                if (!PROTECTED.test(name) && c.cleanup[code].some(function (p) { return cookieMatches(name, p); })) {
+                    expireCookie(name);
+                }
+            });
+        });
     }
 
     function flushQueue() {
@@ -262,7 +309,7 @@
         if (modal && !modal.hidden) {
             modal.hidden = true;
             d.body.classList.remove('sw-cc-modal-open');
-        d.documentElement.style.overflow = '';
+            d.documentElement.style.overflow = '';
         }
         if (floatBtn) { floatBtn.hidden = false; }
 
@@ -277,6 +324,7 @@
         } catch (e) { /* old browsers */ }
 
         // Scripts that already ran cannot be unloaded: reload when a category is withdrawn.
+        cleanupCookies();
         var revoked = previous && previous.c.some(function (code) { return !has(list, code); });
         if (revoked) {
             setTimeout(function () { location.reload(); }, 150);
@@ -337,6 +385,7 @@
     } else {
         showBanner();
     }
+    cleanupCookies();
     activateBlocked();
     flushQueue();
 

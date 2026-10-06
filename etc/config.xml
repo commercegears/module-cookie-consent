@@ -9,6 +9,7 @@
                 <replace_native_notice>1</replace_native_notice>
                 <privacy_url>privacy-policy-cookie-restriction-mode</privacy_url>
                 <reopen_link>footer</reopen_link>
+                <design_scripts/>
             </general>
             <banner>
                 <layout>bar</layout>
@@ -41,6 +42,8 @@
                 <marketing_enabled>1</marketing_enabled>
                 <marketing_label>Marketing</marketing_label>
                 <marketing_description>Used by advertising partners to show you relevant ads and to measure their effectiveness.</marketing_description>
+                <cleanup_cookies>analytics: _ga, _ga_*, _gid, _gat*, _clck, _clsk, _hj*
+marketing: _fbp, _fbc, _gcl_*, _uetsid, _uetvid, _ttp, _pin_unauth, _tt_enable_cookie</cleanup_cookies>
             </categories>
             <consent_mode>
                 <enabled>1</enabled>

@@ -6,4 +6,10 @@
     <type name="Magento\Cookie\Helper\Cookie">
         <plugin name="softaware_cookieconsent_disable_native_notice" type="Softaware\CookieConsent\Plugin\DisableNativeCookieNotice"/>
     </type>
+    <type name="Magento\Framework\View\Page\Config">
+        <plugin name="softaware_cookieconsent_gate_design_head" type="Softaware\CookieConsent\Plugin\GateDesignScripts"/>
+    </type>
+    <type name="Magento\Theme\Block\Html\Footer">
+        <plugin name="softaware_cookieconsent_gate_design_footer" type="Softaware\CookieConsent\Plugin\GateDesignScripts"/>
+    </type>
 </config>

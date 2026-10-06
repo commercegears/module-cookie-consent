@@ -225,6 +225,65 @@ class Config
         return $map;
     }
 
+    /**
+     * Category that gates the scripts in Design > HTML Head > Scripts and Style Sheets and
+     * Design > Footer > Miscellaneous HTML; '' leaves them unchanged.
+     */
+    public function getDesignScriptsCategory(int|string|null $store = null): string
+    {
+        $code = $this->getValue('general/design_scripts', $store);
+        if ($code === '' || $code === self::CATEGORY_NECESSARY) {
+            return '';
+        }
+        return in_array($code, $this->getCategoryCodes($store), true) ? $code : '';
+    }
+
+    /**
+     * First-party cookies to delete when a category is refused or withdrawn.
+     * Config format: one line per category, "analytics: _ga, _ga_*, _gid".
+     *
+     * @return array<string, string[]> category code => cookie names (a trailing * matches a prefix)
+     */
+    public function getCleanupCookies(int|string|null $store = null): array
+    {
+        $codes = $this->getCategoryCodes($store);
+        $result = [];
+        foreach (self::parseCookieList($this->getValue('categories/cleanup_cookies', $store)) as $code => $names) {
+            if ($code !== self::CATEGORY_NECESSARY && in_array($code, $codes, true)) {
+                $result[$code] = $names;
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * @return array<string, string[]>
+     */
+    public static function parseCookieList(string $value): array
+    {
+        $result = [];
+        foreach (preg_split('/\R/', $value) ?: [] as $line) {
+            if (!preg_match('/^\s*([a-z][a-z0-9_]*)\s*:(.*)$/i', $line, $m)) {
+                continue;
+            }
+            $code = strtolower($m[1]);
+            foreach (array_filter(array_map('trim', explode(',', $m[2]))) as $name) {
+                if (self::isValidCookiePattern($name)) {
+                    $result[$code][] = $name;
+                }
+            }
+        }
+        return array_map(static fn (array $names): array => array_values(array_unique($names)), $result);
+    }
+
+    /**
+     * A cookie name, optionally ending in * (at least two characters before it, so "*" cannot delete everything).
+     */
+    public static function isValidCookiePattern(string $name): bool
+    {
+        return (bool)preg_match('/^[A-Za-z0-9_\-.]+$/', $name) || (bool)preg_match('/^[A-Za-z0-9_\-.]{2,}\*$/', $name);
+    }
+
     public function isConsentModeEnabled(int|string|null $store = null): bool
     {
         return $this->getFlag('consent_mode/enabled', $store);

@@ -36,6 +36,15 @@
                     <comment>Lets visitors change their mind later. You can also add the "Softaware Cookie Settings Link" widget, or any link to #cookie-settings, in CMS content.</comment>
                     <source_model>Softaware\CookieConsent\Model\Config\Source\ReopenLink</source_model>
                 </field>
+                <field id="design_scripts" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Scripts in Design Configuration</label>
+                    <comment><![CDATA[Scripts, iframes and images pasted into Content &gt; Design &gt; Configuration (HTML Head &gt; Scripts and Style Sheets, Footer &gt; Miscellaneous HTML), such as chat widgets or pixels, normally run before the visitor has chosen. Choose a category to make them wait for consent. A tag with data-sw-consent="necessary" always runs; data-sw-consent="marketing" on a tag uses that category instead.]]></comment>
+                    <source_model>Softaware\CookieConsent\Model\Config\Source\DesignScriptsCategory</source_model>
+                </field>
+                <field id="design_scripts_found" translate="label" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Found in Design Configuration</label>
+                    <frontend_model>Softaware\CookieConsent\Block\Adminhtml\System\Config\DesignScripts</frontend_model>
+                </field>
             </group>
             <group id="banner" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Banner</label>
@@ -158,6 +167,11 @@
                     <frontend_model>Softaware\CookieConsent\Block\Adminhtml\System\Config\CustomCategories</frontend_model>
                     <backend_model>Softaware\CookieConsent\Model\Config\Backend\CustomCategories</backend_model>
                     <comment><![CDATA[Code: lower-case letters, digits and underscores (used in data-sw-consent="code" and in the consent cookie). Google consent types: optional, comma-separated (for example ad_storage). A consent type is granted only when every category mapped to it is accepted.]]></comment>
+                </field>
+                <field id="cleanup_cookies" translate="label comment" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Cookies to Delete When Refused</label>
+                    <comment><![CDATA[One line per category: <code>category: cookie_name, prefix*</code>. When a visitor refuses or withdraws a category, these first-party cookies are deleted in the browser (on every page while the category stays refused). Cookies of other domains cannot be deleted. Shop cookies (session, form key, basket) are never deleted.]]></comment>
+                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\CookieList</backend_model>
                 </field>
             </group>
             <group id="consent_mode" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">

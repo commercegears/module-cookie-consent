@@ -44,6 +44,7 @@ class HeadScript
             'urlPassthrough' => $this->config->isUrlPassthrough(),
             'regions' => $this->config->getRegions(),
             'otherRegions' => $this->config->getOtherRegionsDefault(),
+            'cleanup' => (object)$this->config->getCleanupCookies(),
         ];
     }
 
@@ -85,8 +86,9 @@ class HeadScript
     if (c.consentMode) {
         var d = types(c.required);
         if (c.waitForUpdate > 0) { d.wait_for_update = c.waitForUpdate; }
-        if (c.regions.length) {
-            if (c.otherRegions === 'granted') { w.gtag('consent', 'default', types(c.categories)); }
+        if (c.regions.length && c.otherRegions === 'granted') {
+            // Granted outside the listed regions, denied (region-specific default wins) inside them.
+            w.gtag('consent', 'default', types(c.categories));
             d.region = c.regions;
         }
         w.gtag('consent', 'default', d);
