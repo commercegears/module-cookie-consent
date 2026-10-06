@@ -3,8 +3,7 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <!-- Title repeated here: Softaware_Base ships its acl.xml in etc/adminhtml/, which Magento does not read. -->
-                <resource id="Softaware_Base::base" title="Softaware" translate="title" sortOrder="50">
+                <resource id="Softaware_Core::core" title="Softaware" translate="title" sortOrder="50">
                     <resource id="Softaware_CookieConsent::main" title="Cookie Consent" translate="title" sortOrder="30">
                         <resource id="Softaware_CookieConsent::scripts" title="Manage Third-party Scripts (site JavaScript)" translate="title" sortOrder="10"/>
                         <resource id="Softaware_CookieConsent::log" title="View Consent Log" translate="title" sortOrder="20">

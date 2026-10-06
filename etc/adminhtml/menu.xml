@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Softaware_CookieConsent::main" title="Cookie Consent" translate="title" module="Softaware_CookieConsent"
-             sortOrder="30" parent="Softaware_Base::base" resource="Softaware_CookieConsent::main"/>
+             sortOrder="30" parent="Softaware_Core::core" resource="Softaware_CookieConsent::main"/>
         <add id="Softaware_CookieConsent::scripts" title="Third-party Scripts" translate="title" module="Softaware_CookieConsent"
              sortOrder="10" parent="Softaware_CookieConsent::main" action="swcookieconsent/script/index"
              resource="Softaware_CookieConsent::scripts"/>

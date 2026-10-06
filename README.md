@@ -110,7 +110,7 @@ Server-side checks of the cookie are deliberately not offered: pages are full-pa
 
 Magento Open Source / Adobe Commerce 2.4.7–2.4.9, PHP 8.2–8.5. Luma/Blank and Hyvä 1.3+ (templates in
 `view/frontend/templates/hyva`, Tailwind classes registered through `hyva_config_generate_before`). Checkout on Hyvä
-uses the Luma checkout and therefore the Luma banner. Requires `softaware/module-base`.
+uses the Luma checkout and therefore the Luma banner. Requires `softaware/module-core`.
 
 ## Limitations
 
