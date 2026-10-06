@@ -19,6 +19,9 @@ class ConsentLogger
 {
     public const ACTIONS = ['accept_all', 'reject_all', 'custom'];
 
+    /** Entries accepted per (truncated) IP hash and hour; more are dropped so the public endpoint cannot flood the table. */
+    public const MAX_ENTRIES_PER_IP_HOUR = 60;
+
     public function __construct(
         private readonly Config $config,
         private readonly LogResource $logResource,
@@ -51,7 +54,14 @@ class ConsentLogger
         }
         $list = implode(',', $categories);
         $version = max(1, $version);
+        $version = min($version, $this->config->getConsentVersion());
         if ($this->logResource->hasRecentDuplicate($consentId, $list, $version)) {
+            return false;
+        }
+        $ipHash = $ip === '' ? null : $this->hashIp($ip);
+        if ($ipHash !== null
+            && $this->logResource->countRecentByIpHash($ipHash, 3600) >= self::MAX_ENTRIES_PER_IP_HOUR
+        ) {
             return false;
         }
         $this->logResource->insertEntry([
@@ -60,7 +70,7 @@ class ConsentLogger
             'action' => $action,
             'categories' => $list,
             'consent_version' => $version,
-            'ip_hash' => $ip === '' ? null : $this->hashIp($ip),
+            'ip_hash' => $ipHash,
         ]);
         return true;
     }

@@ -40,6 +40,20 @@ class Log extends AbstractDb
     }
 
     /**
+     * Number of entries written for this IP hash in the last $seconds seconds.
+     */
+    public function countRecentByIpHash(string $ipHash, int $seconds): int
+    {
+        $connection = $this->getConnection();
+        return (int)$connection->fetchOne(
+            $connection->select()
+                ->from($this->getMainTable(), ['COUNT(*)'])
+                ->where('ip_hash = ?', $ipHash)
+                ->where('created_at >= ?', gmdate('Y-m-d H:i:s', time() - $seconds))
+        );
+    }
+
+    /**
      * Deletes entries older than $days days in batches. Returns the number of deleted rows.
      */
     public function deleteOlderThan(int $days, int $batchSize = 5000): int

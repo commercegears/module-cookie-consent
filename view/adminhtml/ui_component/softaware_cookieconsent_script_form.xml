@@ -133,7 +133,7 @@
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Snippet (HTML)</label>
-                <notice translate="true">Paste the vendor's snippet as-is, including script tags. Script tags are rendered with type="text/plain" and run after consent; iframe and img sources are loaded after consent. Content inside noscript is left unchanged.</notice>
+                <notice translate="true">Paste the vendor&apos;s snippet as-is, including script tags. Script tags are rendered with type="text/plain" and run after consent; images, iframes, video and external stylesheets load after consent. Content inside noscript is left unchanged. Add data-sw-consent="necessary" to a tag that must always run.</notice>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>

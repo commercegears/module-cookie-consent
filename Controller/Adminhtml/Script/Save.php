@@ -47,6 +47,16 @@ class Save extends Action implements HttpPostActionInterface
             if (!in_array($category, array_column($this->categories->toOptionArray(), 'value'), true)) {
                 throw new LocalizedException(__('Please choose a cookie category.'));
             }
+            $content = (string)($data['content'] ?? '');
+            $opened = preg_match_all('#<script\b#i', $content);
+            $closed = preg_match_all('#</script\s*>#i', $content);
+            if ($opened !== $closed) {
+                throw new LocalizedException(__(
+                    'The snippet has %1 opening <script> tag(s) but %2 closing </script> tag(s). Please paste the complete snippet.',
+                    $opened,
+                    $closed
+                ));
+            }
             $storeIds = $data['store_ids'] ?? [0];
             $storeIds = array_map('intval', is_array($storeIds) ? $storeIds : explode(',', (string)$storeIds));
             if ($storeIds === [] || in_array(0, $storeIds, true)) {
@@ -59,7 +69,7 @@ class Save extends Action implements HttpPostActionInterface
                     ? ScriptInterface::POSITION_HEAD : ScriptInterface::POSITION_BODY_END)
                 ->setStoreIds($storeIds)
                 ->setSortOrder((int)($data['sort_order'] ?? 0))
-                ->setContent((string)($data['content'] ?? ''));
+                ->setContent($content);
             $this->scriptRepository->save($script);
             $this->messageManager->addSuccessMessage(__('The script has been saved.'));
             if ($this->getRequest()->getParam('back')) {

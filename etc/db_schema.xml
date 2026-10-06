@@ -36,5 +36,9 @@
         <index referenceId="SOFTAWARE_COOKIECONSENT_LOG_CONSENT_ID" indexType="btree">
             <column name="consent_id"/>
         </index>
+        <index referenceId="SOFTAWARE_COOKIECONSENT_LOG_IP_HASH_CREATED_AT" indexType="btree">
+            <column name="ip_hash"/>
+            <column name="created_at"/>
+        </index>
     </table>
 </schema>
