@@ -29,10 +29,21 @@ consent log. Works on Luma (and Blank-based themes) and Hyvä, with full-page ca
   ```
 - **Consent-gated scripts** (Softaware > Cookie Consent > Third-party Scripts): paste a vendor snippet, choose category,
   position (head / end of body) and store views. `<script>` tags are rendered as `type="text/plain" data-sw-consent="…"`,
-  `iframe`/`img` sources as `data-sw-src`, and are activated in order once the category is accepted. Remote hosts are added
-  to the CSP; inline scripts get a CSP nonce on pages with a strict CSP (checkout).
+  `img`/`iframe`/`source`/`video`/`audio`/`embed` sources as `data-sw-src` / `data-sw-srcset` and external stylesheets
+  as `data-sw-href`, and are activated in order once the category is accepted. Remote hosts are added to the CSP; inline
+  scripts get a CSP nonce on pages with a strict CSP (checkout). A snippet with an unclosed `<script>` tag is refused.
+  On a single tag, `data-sw-consent="necessary"` keeps it running without consent and `data-sw-consent="marketing"` uses
+  that category instead of the snippet's.
+- **Scripts in Magento's design configuration** (chat widgets, pixels pasted into *Content > Design > Configuration >
+  HTML Head > Scripts and Style Sheets* or *Footer > Miscellaneous HTML*): set *General > Scripts in Design Configuration*
+  to a category and they wait for consent too (images, iframes and stylesheets from the shop's own domain keep loading).
+  The settings page and the Third-party Scripts grid list every such script that currently loads without consent.
+- **Cookie clean-up**: first-party cookies of refused or withdrawn categories are deleted in the browser
+  (*Cookie Categories > Cookies to Delete When Refused*, pre-filled for Google Analytics, Clarity, Hotjar, Meta, Google
+  Ads, Microsoft Ads, TikTok and Pinterest). Shop cookies (session, form key, basket) are never deleted.
 - **Consent log** (optional): random consent id, store, choice, categories, version and an HMAC-SHA256 of the (optionally
-  truncated) IP. Admin grid with filters, CSV/XML export, mass delete; daily retention cron.
+  truncated) IP. Admin grid with filters, CSV/XML export, mass delete; daily retention cron. At most 60 entries per
+  (truncated) IP and hour are stored, so the public logging endpoint cannot be used to flood the table.
 - **Magento's own cookie notice** ("Cookie Restriction Mode") is switched off while the module is enabled (setting
   *Replace Magento Cookie Restriction Notice*), on Luma and Hyvä.
 - **Appearance**: uses the theme's fonts and buttons (Luma `.action.primary`, Hyvä `btn btn-primary`) by default;
@@ -46,16 +57,17 @@ consent log. Works on Luma (and Blank-based themes) and Hyvä, with full-page ca
 
 | Group | Notes |
 |---|---|
-| General | Enabled, consent version, expiry, replace Magento notice, policy URL, "Cookie settings" link (footer / floating / both / none) |
+| General | Enabled, consent version, expiry, replace Magento notice, policy URL, "Cookie settings" link (footer / floating / both / none), scripts in design configuration (+ list of ungated scripts found) |
 | Banner | Layout and position, show "Reject all", texts |
 | Preferences Window | Texts |
-| Cookie Categories | Names/descriptions, show Preferences/Marketing, additional categories |
+| Cookie Categories | Names/descriptions, show Preferences/Marketing, additional categories, cookies to delete when refused |
 | Google Consent Mode v2 | On/off, wait_for_update, ads_data_redaction, url_passthrough, regions, default outside those regions |
 | Appearance | Custom colours, font family |
 | Consent Log | On/off, truncate IP before hashing, retention days |
 
 Admin pages: *Softaware > Cookie Consent > Third-party Scripts*, *Consent Log*. ACL: `Softaware_CookieConsent::scripts`,
-`::log`, `::log_delete`, `::config`.
+`::log`, `::log_delete`, `::config`. Note that `::scripts` lets a user add JavaScript to every storefront page, including
+checkout: give it only to people you would also let edit *Content > Design > Configuration*.
 
 ## For developers
 
@@ -104,7 +116,9 @@ uses the Luma checkout and therefore the Luma banner. Requires `softaware/module
 
 - The banner is shown to every visitor; regions only change Google's default consent state (no server-side geolocation,
   because pages are cached).
-- Scripts added directly in templates, CMS blocks or *Design > HTML Head* are not blocked automatically – move them to
-  *Third-party Scripts* or use the `data-sw-consent` markup.
-- Cookies set by scripts that already ran are not deleted on withdrawal; the page reloads so they stop running.
+- Scripts added directly in templates or CMS blocks are not blocked automatically – move them to *Third-party Scripts*
+  or use the `data-sw-consent` markup. Scripts in *Design > HTML Head / Footer* are blocked only when *Scripts in Design
+  Configuration* is set (default: unchanged, so upgrades do not change existing pages).
+- Only first-party cookies on the shop's domain can be deleted; cookies of other domains (for example doubleclick.net)
+  stay until the vendor removes them. The page reloads after a withdrawal so scripts that already ran stop.
 - A blocked script's own CSP needs (for example `connect-src` of a pixel) still have to be whitelisted.
