@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">softaware_cookieconsent_log_listing.softaware_cookieconsent_log_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>softaware_cookieconsent_log_columns</spinner>
+        <deps>
+            <dep>softaware_cookieconsent_log_listing.softaware_cookieconsent_log_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="softaware_cookieconsent_log_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">log_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Softaware_CookieConsent::log</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="softaware_cookieconsent_log_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>log_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete the selected log entries? This cannot be undone.</message>
+                        <title translate="true">Delete log entries</title>
+                    </confirm>
+                    <url path="swcookieconsent/log/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+    <columns name="softaware_cookieconsent_log_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>log_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="log_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Date</label>
+            </settings>
+        </column>
+        <column name="consent_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Consent ID</label>
+            </settings>
+        </column>
+        <column name="action" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Softaware\CookieConsent\Model\Config\Source\LogAction"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Choice</label>
+            </settings>
+        </column>
+        <column name="categories">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Accepted Categories</label>
+            </settings>
+        </column>
+        <column name="consent_version">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Version</label>
+            </settings>
+        </column>
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="ip_hash">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">IP Hash</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+    </columns>
+</listing>

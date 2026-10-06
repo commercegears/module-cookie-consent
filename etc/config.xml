@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <softaware_cookieconsent>
+            <general>
+                <enabled>0</enabled>
+                <consent_version>1</consent_version>
+                <expiry_days>180</expiry_days>
+                <replace_native_notice>1</replace_native_notice>
+                <privacy_url>privacy-policy-cookie-restriction-mode</privacy_url>
+                <reopen_link>footer</reopen_link>
+            </general>
+            <banner>
+                <layout>bar</layout>
+                <bar_position>bottom</bar_position>
+                <box_position>bottom-left</box_position>
+                <show_reject>1</show_reject>
+                <title>We value your privacy</title>
+                <message>We use cookies to make this site work and, with your permission, to understand how it is used and to show you relevant advertising. You can accept all cookies, reject the optional ones or choose which ones to allow.</message>
+                <accept_label>Accept all</accept_label>
+                <reject_label>Reject all</reject_label>
+                <settings_label>Manage preferences</settings_label>
+                <privacy_label>Cookie policy</privacy_label>
+                <reopen_label>Cookie settings</reopen_label>
+            </banner>
+            <modal>
+                <title>Cookie preferences</title>
+                <intro>Choose which cookies you allow. Necessary cookies are always on because the shop cannot work without them. You can change your choice at any time with the "Cookie settings" link.</intro>
+                <save_label>Save choices</save_label>
+                <always_on_label>Always on</always_on_label>
+                <close_label>Close</close_label>
+            </modal>
+            <categories>
+                <necessary_label>Necessary</necessary_label>
+                <necessary_description>Needed for the basket, checkout, login and security. They do not track you.</necessary_description>
+                <preferences_enabled>1</preferences_enabled>
+                <preferences_label>Preferences</preferences_label>
+                <preferences_description>Remember choices such as language, currency and recently viewed products.</preferences_description>
+                <analytics_label>Analytics</analytics_label>
+                <analytics_description>Help us understand how the site is used so we can improve it, for example Google Analytics.</analytics_description>
+                <marketing_enabled>1</marketing_enabled>
+                <marketing_label>Marketing</marketing_label>
+                <marketing_description>Used by advertising partners to show you relevant ads and to measure their effectiveness.</marketing_description>
+            </categories>
+            <consent_mode>
+                <enabled>1</enabled>
+                <wait_for_update>500</wait_for_update>
+                <ads_data_redaction>1</ads_data_redaction>
+                <url_passthrough>0</url_passthrough>
+                <other_regions_default>granted</other_regions_default>
+            </consent_mode>
+            <appearance>
+                <custom_colours>0</custom_colours>
+                <background>#ffffff</background>
+                <text>#333333</text>
+                <button_background>#1979c3</button_background>
+                <button_text>#ffffff</button_text>
+                <link>#1979c3</link>
+            </appearance>
+            <log>
+                <enabled>0</enabled>
+                <anonymise_ip>1</anonymise_ip>
+                <retention_days>730</retention_days>
+            </log>
+        </softaware_cookieconsent>
+    </default>
+</config>

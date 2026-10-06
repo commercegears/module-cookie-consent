@@ -1,0 +1,17 @@
+<?php
+/**
+ * Copyright © Softaware Commerce. All rights reserved.
+ * Widget: link that opens the cookie preferences window (works on Luma and Hyvä).
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Softaware\CookieConsent\Block\Widget\SettingsLink;
+
+/** @var SettingsLink $block */
+/** @var Escaper $escaper */
+if (!$block->isConsentEnabled()) {
+    return;
+}
+?>
+<a href="#cookie-settings" data-sw-cc-open class="<?= $escaper->escapeHtmlAttr($block->getCssClass()) ?>"><?= $escaper->escapeHtml($block->getLabel()) ?></a>

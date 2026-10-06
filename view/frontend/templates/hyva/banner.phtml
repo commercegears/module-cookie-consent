@@ -1,0 +1,151 @@
+<?php
+/**
+ * Copyright © Softaware Commerce. All rights reserved.
+ *
+ * Cookie banner + preferences window for Hyvä themes (Tailwind classes, no Alpine needed:
+ * the same vanilla consent.js as Luma drives it through data attributes).
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Softaware\CookieConsent\ViewModel\Banner;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var Banner $vm */
+$vm = $block->getData('view_model');
+if (!$vm || !$vm->isEnabled()) {
+    return;
+}
+$layout = $vm->getLayout();
+$position = $vm->getPosition();
+$privacyUrl = $vm->getPrivacyUrl();
+
+$bannerClasses = [
+    'bar-bottom' => 'fixed inset-x-0 bottom-0 shadow-[0_-2px_16px_rgba(0,0,0,0.15)] p-4 md:py-5 lg:pr-24',
+    'bar-top' => 'fixed inset-x-0 top-0 shadow-[0_2px_16px_rgba(0,0,0,0.15)] p-4 md:py-5 lg:pr-24',
+    'box-bottom-left' => 'fixed left-2 right-2 bottom-2 sm:right-auto sm:left-4 sm:bottom-4 sm:w-[28rem] rounded-lg shadow-2xl p-5 sm:p-6',
+    'box-bottom-right' => 'fixed left-2 right-2 bottom-2 sm:left-auto sm:right-4 sm:bottom-4 sm:w-[28rem] rounded-lg shadow-2xl p-5 sm:p-6',
+    'box-center' => 'fixed left-2 right-2 top-1/2 -translate-y-1/2 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:w-[30rem] rounded-lg shadow-2xl p-5 sm:p-6',
+][$layout . '-' . $position] ?? 'fixed inset-x-0 bottom-0 p-4';
+$innerClasses = $layout === 'bar'
+    ? 'container flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8'
+    : 'flex flex-col gap-4';
+$actionsClasses = $layout === 'bar'
+    ? 'flex flex-col-reverse gap-2 sm:flex-row sm:flex-wrap lg:shrink-0 lg:flex-nowrap'
+    : 'flex flex-col-reverse gap-2 sm:flex-row sm:flex-wrap [&>*]:grow';
+$switchClasses = 'sw-cc-switch relative h-6 w-11 shrink-0 cursor-pointer appearance-none rounded-full bg-gray-300 '
+    . 'transition-colors checked:bg-primary disabled:cursor-not-allowed disabled:opacity-60 '
+    . "before:absolute before:left-0.5 before:top-0.5 before:h-5 before:w-5 before:rounded-full before:bg-white before:shadow before:transition-transform before:content-[''] "
+    . 'checked:before:translate-x-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary';
+?>
+<?php if ($vm->hasCustomColours()): ?>
+<style>
+    #sw-cc .sw-cc-panel, #sw-cc .sw-cc-float { background: var(--sw-cc-bg); color: var(--sw-cc-text); }
+    #sw-cc .sw-cc-panel a { color: var(--sw-cc-link); }
+    #sw-cc .sw-cc-btn { --btn-bg: var(--sw-cc-btn-bg); --btn-hover-bg: var(--sw-cc-btn-bg); --btn-active-bg: var(--sw-cc-btn-bg); --btn-color: var(--sw-cc-btn-text); --btn-hover-color: var(--sw-cc-btn-text); --btn-active-color: var(--sw-cc-btn-text); background: var(--sw-cc-btn-bg); color: var(--sw-cc-btn-text); border-color: var(--sw-cc-btn-bg); }
+    #sw-cc .sw-cc-btn--secondary { --btn-bg: transparent; --btn-hover-bg: transparent; --btn-color: var(--sw-cc-text); --btn-hover-color: var(--sw-cc-text); --btn-stroke: currentColor; background: transparent; color: var(--sw-cc-text); border-color: currentColor; }
+    #sw-cc .sw-cc-switch:checked { background: var(--sw-cc-link); }
+</style>
+<?php endif; ?>
+<div id="sw-cc" class="sw-cc relative z-[9990]"
+     data-sw-cc-config="<?= $escaper->escapeHtmlAttr($vm->getJsConfig()) ?>"
+     <?php if ($vm->hasCustomStyle()): ?>style="<?= $escaper->escapeHtmlAttr($vm->getStyleVariables()) ?>; font-family: var(--sw-cc-font, inherit)"<?php endif; ?>>
+    <?php if ($layout === 'box' && $position === 'center'): ?>
+        <div class="fixed inset-0 bg-black/50" data-sw-cc-banner-backdrop hidden></div>
+    <?php endif; ?>
+    <section class="sw-cc-panel <?= $escaper->escapeHtmlAttr($bannerClasses) ?> z-[9991] bg-white text-gray-800 focus:outline-none"
+             data-sw-cc-banner hidden tabindex="-1" aria-labelledby="sw-cc-title" aria-describedby="sw-cc-desc">
+        <div class="<?= $escaper->escapeHtmlAttr($innerClasses) ?>">
+            <div class="grow">
+                <h2 id="sw-cc-title" class="mb-1 text-lg font-semibold leading-snug"><?= $escaper->escapeHtml($vm->text('banner/title')) ?></h2>
+                <p id="sw-cc-desc" class="text-sm leading-relaxed">
+                    <?= /* @noEscape */ $vm->richText('banner/message') ?>
+                    <?php if ($privacyUrl): ?>
+                        <a class="underline underline-offset-2 hover:no-underline" href="<?= $escaper->escapeUrl($privacyUrl) ?>"><?= $escaper->escapeHtml($vm->text('banner/privacy_label')) ?></a>
+                    <?php endif; ?>
+                </p>
+            </div>
+            <div class="<?= $escaper->escapeHtmlAttr($actionsClasses) ?>">
+                <button type="button" class="sw-cc-btn sw-cc-btn--secondary btn btn-secondary justify-center whitespace-nowrap" data-sw-cc-action="settings">
+                    <?= $escaper->escapeHtml($vm->text('banner/settings_label')) ?>
+                </button>
+                <?php if ($vm->showReject()): ?>
+                    <button type="button" class="sw-cc-btn btn btn-primary justify-center whitespace-nowrap" data-sw-cc-action="reject">
+                        <?= $escaper->escapeHtml($vm->text('banner/reject_label')) ?>
+                    </button>
+                <?php endif; ?>
+                <button type="button" class="sw-cc-btn btn btn-primary justify-center whitespace-nowrap" data-sw-cc-action="accept">
+                    <?= $escaper->escapeHtml($vm->text('banner/accept_label')) ?>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed inset-0 z-[9995] flex items-center justify-center p-2 sm:p-4" data-sw-cc-modal hidden>
+        <div class="absolute inset-0 bg-black/50" data-sw-cc-action="close"></div>
+        <div class="sw-cc-panel relative flex max-h-[calc(100vh-1rem)] w-full max-w-xl flex-col rounded-lg bg-white text-gray-800 shadow-2xl focus:outline-none sm:max-h-[calc(100vh-2rem)]"
+             data-sw-cc-dialog role="dialog" aria-modal="true" aria-labelledby="sw-cc-modal-title" tabindex="-1">
+            <div class="flex items-center justify-between gap-4 px-4 pb-2 pt-4 sm:px-6 sm:pt-5">
+                <h2 id="sw-cc-modal-title" class="text-lg font-semibold"><?= $escaper->escapeHtml($vm->text('modal/title')) ?></h2>
+                <button type="button" class="rounded p-1.5 hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-primary" data-sw-cc-action="close"
+                        aria-label="<?= $escaper->escapeHtmlAttr($vm->text('modal/close_label')) ?>">
+                    <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+            </div>
+            <div class="overflow-y-auto px-4 pb-2 sm:px-6">
+                <p class="text-sm leading-relaxed"><?= /* @noEscape */ $vm->richText('modal/intro') ?></p>
+                <ul class="mt-4">
+                    <?php foreach ($vm->getCategories() as $category):
+                        $code = $category['code'];
+                        $inputId = 'sw-cc-cat-' . $code;
+                        $hasDescription = $category['description'] !== '';
+                        ?>
+                        <li class="border-t border-gray-200 py-3.5">
+                            <div class="flex items-center gap-3">
+                                <label class="grow cursor-pointer font-semibold" for="<?= $escaper->escapeHtmlAttr($inputId) ?>">
+                                    <?= $escaper->escapeHtml($category['label']) ?>
+                                </label>
+                                <?php if ($category['required']): ?>
+                                    <span class="text-sm text-gray-600"><?= $escaper->escapeHtml($vm->text('modal/always_on_label')) ?></span>
+                                <?php endif; ?>
+                                <input type="checkbox" role="switch" class="<?= $escaper->escapeHtmlAttr($switchClasses) ?>"
+                                       id="<?= $escaper->escapeHtmlAttr($inputId) ?>"
+                                       data-sw-cc-category="<?= $escaper->escapeHtmlAttr($code) ?>"
+                                       <?php if ($hasDescription): ?>aria-describedby="<?= $escaper->escapeHtmlAttr($inputId) ?>-desc"<?php endif; ?>
+                                       <?= $category['required'] ? 'checked disabled' : '' ?>>
+                            </div>
+                            <?php if ($hasDescription): ?>
+                                <p class="mt-1.5 text-sm leading-relaxed text-gray-600" id="<?= $escaper->escapeHtmlAttr($inputId) ?>-desc">
+                                    <?= $escaper->escapeHtml($category['description']) ?>
+                                </p>
+                            <?php endif; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="flex flex-col gap-2 border-t border-gray-200 px-4 py-3 sm:flex-row sm:justify-end sm:px-6 sm:py-4">
+                <button type="button" class="sw-cc-btn sw-cc-btn--secondary btn btn-secondary justify-center" data-sw-cc-action="save">
+                    <?= $escaper->escapeHtml($vm->text('modal/save_label')) ?>
+                </button>
+                <button type="button" class="sw-cc-btn btn btn-primary justify-center" data-sw-cc-action="reject">
+                    <?= $escaper->escapeHtml($vm->text('banner/reject_label')) ?>
+                </button>
+                <button type="button" class="sw-cc-btn btn btn-primary justify-center" data-sw-cc-action="accept">
+                    <?= $escaper->escapeHtml($vm->text('banner/accept_label')) ?>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <?php if ($vm->showFloatingButton()): ?>
+        <button type="button" class="sw-cc-float fixed bottom-4 left-4 z-[9980] flex h-11 w-11 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-800 shadow-lg hover:border-gray-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                data-sw-cc-action="open" data-sw-cc-float hidden
+                aria-label="<?= $escaper->escapeHtmlAttr($vm->text('banner/reopen_label')) ?>"
+                title="<?= $escaper->escapeHtmlAttr($vm->text('banner/reopen_label')) ?>">
+            <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.6 12.8A9.6 9.6 0 1 1 11.2 2.4a3 3 0 0 0 3.6 3.6 3 3 0 0 0 3.6 3.6 3 3 0 0 0 3.2 3.2z"/><circle cx="8.5" cy="9.5" r="1"/><circle cx="9" cy="15" r="1"/><circle cx="14.5" cy="15.5" r="1"/></svg>
+        </button>
+    <?php endif; ?>
+</div>
+<script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Softaware_CookieConsent::js/consent.js')) ?>" defer></script>

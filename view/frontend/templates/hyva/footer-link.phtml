@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © Softaware Commerce. All rights reserved.
+ * "Cookie settings" link below the Hyvä footer columns.
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Softaware\CookieConsent\ViewModel\Banner;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var Banner $vm */
+$vm = $block->getData('view_model');
+if (!$vm || !$vm->showFooterLink()) {
+    return;
+}
+?>
+<div class="w-full">
+    <a href="#cookie-settings" data-sw-cc-open class="text-base leading-6 underline underline-offset-2 hover:no-underline">
+        <?= $escaper->escapeHtml($vm->text('banner/reopen_label')) ?>
+    </a>
+</div>

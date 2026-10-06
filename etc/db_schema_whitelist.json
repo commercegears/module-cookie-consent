@@ -1,0 +1,41 @@
+{
+    "softaware_cookieconsent_script": {
+        "column": {
+            "script_id": true,
+            "name": true,
+            "is_active": true,
+            "category": true,
+            "position": true,
+            "store_ids": true,
+            "sort_order": true,
+            "content": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "SOFTAWARE_COOKIECONSENT_SCRIPT_IS_ACTIVE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "softaware_cookieconsent_log": {
+        "column": {
+            "log_id": true,
+            "consent_id": true,
+            "store_id": true,
+            "action": true,
+            "categories": true,
+            "consent_version": true,
+            "ip_hash": true,
+            "created_at": true
+        },
+        "index": {
+            "SOFTAWARE_COOKIECONSENT_LOG_CREATED_AT": true,
+            "SOFTAWARE_COOKIECONSENT_LOG_CONSENT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

@@ -1,0 +1,125 @@
+<?php
+/**
+ * Copyright © Softaware Commerce. All rights reserved.
+ *
+ * Cookie banner + preferences window (Luma / blank based themes).
+ * Markup contract used by consent.js: #sw-cc root, [data-sw-cc-banner], [data-sw-cc-modal], [data-sw-cc-dialog],
+ * [data-sw-cc-action], [data-sw-cc-category].
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Softaware\CookieConsent\ViewModel\Banner;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var Banner $vm */
+$vm = $block->getData('view_model');
+if (!$vm || !$vm->isEnabled()) {
+    return;
+}
+$layout = $vm->getLayout();
+$position = $vm->getPosition();
+$privacyUrl = $vm->getPrivacyUrl();
+$rootClasses = 'sw-cc sw-cc--' . $layout . ' sw-cc--' . $position . ($vm->hasCustomColours() ? ' sw-cc--custom' : '');
+?>
+<div id="sw-cc" class="<?= $escaper->escapeHtmlAttr($rootClasses) ?>"
+     data-sw-cc-config="<?= $escaper->escapeHtmlAttr($vm->getJsConfig()) ?>"
+     <?php if ($vm->hasCustomStyle()): ?>style="<?= $escaper->escapeHtmlAttr($vm->getStyleVariables()) ?>"<?php endif; ?>>
+    <?php if ($layout === 'box' && $position === 'center'): ?>
+        <div class="sw-cc-backdrop" data-sw-cc-banner-backdrop hidden></div>
+    <?php endif; ?>
+    <section class="sw-cc-banner sw-cc-panel" data-sw-cc-banner hidden tabindex="-1"
+             aria-labelledby="sw-cc-title" aria-describedby="sw-cc-desc">
+        <div class="sw-cc-banner__inner">
+            <div class="sw-cc-banner__text">
+                <h2 id="sw-cc-title" class="sw-cc-title"><?= $escaper->escapeHtml($vm->text('banner/title')) ?></h2>
+                <p id="sw-cc-desc" class="sw-cc-message">
+                    <?= /* @noEscape */ $vm->richText('banner/message') ?>
+                    <?php if ($privacyUrl): ?>
+                        <a class="sw-cc-link" href="<?= $escaper->escapeUrl($privacyUrl) ?>"><?= $escaper->escapeHtml($vm->text('banner/privacy_label')) ?></a>
+                    <?php endif; ?>
+                </p>
+            </div>
+            <div class="sw-cc-actions">
+                <button type="button" class="action sw-cc-btn sw-cc-btn--secondary" data-sw-cc-action="settings">
+                    <span><?= $escaper->escapeHtml($vm->text('banner/settings_label')) ?></span>
+                </button>
+                <?php if ($vm->showReject()): ?>
+                    <button type="button" class="action primary sw-cc-btn" data-sw-cc-action="reject">
+                        <span><?= $escaper->escapeHtml($vm->text('banner/reject_label')) ?></span>
+                    </button>
+                <?php endif; ?>
+                <button type="button" class="action primary sw-cc-btn" data-sw-cc-action="accept">
+                    <span><?= $escaper->escapeHtml($vm->text('banner/accept_label')) ?></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="sw-cc-modal" data-sw-cc-modal hidden>
+        <div class="sw-cc-backdrop" data-sw-cc-action="close"></div>
+        <div class="sw-cc-dialog sw-cc-panel" data-sw-cc-dialog role="dialog" aria-modal="true"
+             aria-labelledby="sw-cc-modal-title" tabindex="-1">
+            <div class="sw-cc-dialog__header">
+                <h2 id="sw-cc-modal-title" class="sw-cc-title"><?= $escaper->escapeHtml($vm->text('modal/title')) ?></h2>
+                <button type="button" class="sw-cc-close" data-sw-cc-action="close"
+                        aria-label="<?= $escaper->escapeHtmlAttr($vm->text('modal/close_label')) ?>">
+                    <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+            </div>
+            <div class="sw-cc-dialog__body">
+                <p class="sw-cc-intro"><?= /* @noEscape */ $vm->richText('modal/intro') ?></p>
+                <ul class="sw-cc-categories">
+                    <?php foreach ($vm->getCategories() as $category):
+                        $code = $category['code'];
+                        $inputId = 'sw-cc-cat-' . $code;
+                        $hasDescription = $category['description'] !== '';
+                        ?>
+                        <li class="sw-cc-category">
+                            <div class="sw-cc-category__head">
+                                <label class="sw-cc-category__label" for="<?= $escaper->escapeHtmlAttr($inputId) ?>">
+                                    <?= $escaper->escapeHtml($category['label']) ?>
+                                </label>
+                                <?php if ($category['required']): ?>
+                                    <span class="sw-cc-always"><?= $escaper->escapeHtml($vm->text('modal/always_on_label')) ?></span>
+                                <?php endif; ?>
+                                <input type="checkbox" role="switch" class="sw-cc-switch"
+                                       id="<?= $escaper->escapeHtmlAttr($inputId) ?>"
+                                       data-sw-cc-category="<?= $escaper->escapeHtmlAttr($code) ?>"
+                                       <?php if ($hasDescription): ?>aria-describedby="<?= $escaper->escapeHtmlAttr($inputId) ?>-desc"<?php endif; ?>
+                                       <?= $category['required'] ? 'checked disabled' : '' ?>>
+                            </div>
+                            <?php if ($hasDescription): ?>
+                                <p class="sw-cc-category__desc" id="<?= $escaper->escapeHtmlAttr($inputId) ?>-desc">
+                                    <?= $escaper->escapeHtml($category['description']) ?>
+                                </p>
+                            <?php endif; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="sw-cc-dialog__footer">
+                <button type="button" class="action sw-cc-btn sw-cc-btn--secondary" data-sw-cc-action="save">
+                    <span><?= $escaper->escapeHtml($vm->text('modal/save_label')) ?></span>
+                </button>
+                <button type="button" class="action primary sw-cc-btn" data-sw-cc-action="reject">
+                    <span><?= $escaper->escapeHtml($vm->text('banner/reject_label')) ?></span>
+                </button>
+                <button type="button" class="action primary sw-cc-btn" data-sw-cc-action="accept">
+                    <span><?= $escaper->escapeHtml($vm->text('banner/accept_label')) ?></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <?php if ($vm->showFloatingButton()): ?>
+        <button type="button" class="sw-cc-float" data-sw-cc-action="open" data-sw-cc-float hidden
+                aria-label="<?= $escaper->escapeHtmlAttr($vm->text('banner/reopen_label')) ?>"
+                title="<?= $escaper->escapeHtmlAttr($vm->text('banner/reopen_label')) ?>">
+            <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.6 12.8A9.6 9.6 0 1 1 11.2 2.4a3 3 0 0 0 3.6 3.6 3 3 0 0 0 3.6 3.6 3 3 0 0 0 3.2 3.2z"/><circle cx="8.5" cy="9.5" r="1"/><circle cx="9" cy="15" r="1"/><circle cx="14.5" cy="15.5" r="1"/></svg>
+        </button>
+    <?php endif; ?>
+</div>
+<script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Softaware_CookieConsent::js/consent.js')) ?>" defer></script>

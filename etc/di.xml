@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Softaware\CookieConsent\Api\Data\ScriptInterface" type="Softaware\CookieConsent\Model\Script"/>
+    <preference for="Softaware\CookieConsent\Api\ScriptRepositoryInterface" type="Softaware\CookieConsent\Model\ScriptRepository"/>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="softaware_cookieconsent_bump_version" xsi:type="object">Softaware\CookieConsent\Console\Command\BumpVersion</item>
+                <item name="softaware_cookieconsent_clean_log" xsi:type="object">Softaware\CookieConsent\Console\Command\CleanLog</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Softaware\CookieConsent\Console\Command\BumpVersion">
+        <arguments>
+            <argument name="configWriter" xsi:type="object">Magento\Framework\App\Config\Storage\WriterInterface\Proxy</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Softaware\CookieConsent\Model\ResourceModel\Script\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">softaware_cookieconsent_script</argument>
+            <argument name="resourceModel" xsi:type="string">Softaware\CookieConsent\Model\ResourceModel\Script</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Softaware\CookieConsent\Model\ResourceModel\Log\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">softaware_cookieconsent_log</argument>
+            <argument name="resourceModel" xsi:type="string">Softaware\CookieConsent\Model\ResourceModel\Log</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="softaware_cookieconsent_script_listing_data_source" xsi:type="string">Softaware\CookieConsent\Model\ResourceModel\Script\Grid\Collection</item>
+                <item name="softaware_cookieconsent_log_listing_data_source" xsi:type="string">Softaware\CookieConsent\Model\ResourceModel\Log\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

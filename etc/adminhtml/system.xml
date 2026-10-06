@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="softaware_cookieconsent" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Cookie Consent</label>
+            <tab>softaware</tab>
+            <resource>Softaware_CookieConsent::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="consent_version" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Consent Version</label>
+                    <comment>Stored with every visitor's choice. Increase the number (for example after adding a new tracking tool) and every visitor is asked again. Also possible with bin/magento softaware:cookie-consent:bump-version.</comment>
+                    <validate>required-entry validate-digits validate-greater-than-zero</validate>
+                </field>
+                <field id="expiry_days" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Consent Expiry (Days)</label>
+                    <comment>After this many days the visitor is asked again. 180 days (6 months) is a common choice in the UK and EU.</comment>
+                    <validate>required-entry validate-digits validate-greater-than-zero</validate>
+                </field>
+                <field id="replace_native_notice" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Replace Magento Cookie Restriction Notice</label>
+                    <comment>When Yes, Magento's own "Cookie Restriction Mode" notice is switched off while this module is enabled, so visitors see one banner only. Magento then sets its functional cookies as if restriction mode were off.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="privacy_url" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Cookie / Privacy Policy URL</label>
+                    <comment>A URL key relative to the store (for example privacy-policy-cookie-restriction-mode) or a full URL. Leave empty to hide the link.</comment>
+                </field>
+                <field id="reopen_link" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>"Cookie Settings" Link</label>
+                    <comment>Lets visitors change their mind later. You can also add the "Softaware Cookie Settings Link" widget, or any link to #cookie-settings, in CMS content.</comment>
+                    <source_model>Softaware\CookieConsent\Model\Config\Source\ReopenLink</source_model>
+                </field>
+            </group>
+            <group id="banner" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Banner</label>
+                <field id="layout" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Layout</label>
+                    <source_model>Softaware\CookieConsent\Model\Config\Source\Layout</source_model>
+                </field>
+                <field id="bar_position" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Position</label>
+                    <source_model>Softaware\CookieConsent\Model\Config\Source\BarPosition</source_model>
+                    <depends>
+                        <field id="layout">bar</field>
+                    </depends>
+                </field>
+                <field id="box_position" translate="label" type="select" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Position</label>
+                    <source_model>Softaware\CookieConsent\Model\Config\Source\BoxPosition</source_model>
+                    <depends>
+                        <field id="layout">box</field>
+                    </depends>
+                </field>
+                <field id="show_reject" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show "Reject All" on the Banner</label>
+                    <comment>UK and EU regulators expect rejecting to be as easy as accepting. Keep this on unless you have legal advice otherwise.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Title</label>
+                </field>
+                <field id="message" translate="label comment" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Message</label>
+                    <comment>Plain text. Basic tags (b, strong, em, a, br) are allowed.</comment>
+                </field>
+                <field id="accept_label" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>"Accept All" Button</label>
+                </field>
+                <field id="reject_label" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>"Reject All" Button</label>
+                </field>
+                <field id="settings_label" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>"Settings" Button</label>
+                </field>
+                <field id="privacy_label" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Policy Link Text</label>
+                </field>
+                <field id="reopen_label" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>"Cookie Settings" Link Text</label>
+                </field>
+            </group>
+            <group id="modal" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Preferences Window</label>
+                <field id="title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Title</label>
+                </field>
+                <field id="intro" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Introduction</label>
+                    <comment>Plain text. Basic tags (b, strong, em, a, br) are allowed.</comment>
+                </field>
+                <field id="save_label" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>"Save Choices" Button</label>
+                </field>
+                <field id="always_on_label" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>"Always On" Text</label>
+                </field>
+                <field id="close_label" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Close Button (Screen Readers)</label>
+                </field>
+            </group>
+            <group id="categories" translate="label comment" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cookie Categories</label>
+                <comment><![CDATA[Google Consent Mode mapping: Necessary &rarr; security_storage; Preferences &rarr; functionality_storage, personalization_storage; Analytics &rarr; analytics_storage; Marketing &rarr; ad_storage, ad_user_data, ad_personalization.]]></comment>
+                <field id="necessary_label" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Necessary: Name</label>
+                </field>
+                <field id="necessary_description" translate="label" type="textarea" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Necessary: Description</label>
+                </field>
+                <field id="preferences_enabled" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Preferences: Show</label>
+                    <comment>When hidden, functionality_storage and personalization_storage are treated as necessary (granted).</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="preferences_label" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Preferences: Name</label>
+                    <depends>
+                        <field id="preferences_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="preferences_description" translate="label" type="textarea" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Preferences: Description</label>
+                    <depends>
+                        <field id="preferences_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="analytics_label" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Analytics: Name</label>
+                </field>
+                <field id="analytics_description" translate="label" type="textarea" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Analytics: Description</label>
+                </field>
+                <field id="marketing_enabled" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Marketing: Show</label>
+                    <comment>When hidden, the ad_* consent types stay denied.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="marketing_label" translate="label" type="text" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Marketing: Name</label>
+                    <depends>
+                        <field id="marketing_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="marketing_description" translate="label" type="textarea" sortOrder="42" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Marketing: Description</label>
+                    <depends>
+                        <field id="marketing_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="custom" translate="label comment" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Additional Categories</label>
+                    <frontend_model>Softaware\CookieConsent\Block\Adminhtml\System\Config\CustomCategories</frontend_model>
+                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\CustomCategories</backend_model>
+                    <comment><![CDATA[Code: lower-case letters, digits and underscores (used in data-sw-consent="code" and in the consent cookie). Google consent types: optional, comma-separated (for example ad_storage). A consent type is granted only when every category mapped to it is accepted.]]></comment>
+                </field>
+            </group>
+            <group id="consent_mode" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Google Consent Mode v2</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <comment>Outputs gtag('consent', 'default', ...) at the top of the page head and gtag('consent', 'update', ...) when the visitor chooses. Needed for Google tags (GA4, Google Ads, Floodlight) loaded by GTM or gtag.js.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="wait_for_update" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Wait for Update (ms)</label>
+                    <comment>How long Google tags wait for a consent update before sending pings. 500 is typical.</comment>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="ads_data_redaction" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Redact Ads Data</label>
+                    <comment>When ad_storage is denied, ad click identifiers are redacted from requests.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="url_passthrough" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>URL Passthrough</label>
+                    <comment>Passes ad click information (gclid, dclid) through page URLs when cookies are not allowed.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="regions" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Regions Requiring Consent</label>
+                    <comment>Optional. Comma-separated ISO 3166-2 codes (for example GB, DE, ES, US-CA). Empty means consent defaults to denied everywhere. When filled, Google applies the denied defaults in these regions only. The banner itself is shown to every visitor.</comment>
+                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Regions</backend_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="other_regions_default" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default for Other Regions</label>
+                    <source_model>Softaware\CookieConsent\Model\Config\Source\GrantedDenied</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="appearance" translate="label comment" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Appearance</label>
+                <comment>By default the banner uses the theme's fonts and button styles (Luma and Hyvä). Custom colours override them.</comment>
+                <field id="custom_colours" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Use Custom Colours</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="background" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Background</label>
+                    <comment>Hex colour, for example #ffffff.</comment>
+                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Colour</backend_model>
+                    <depends>
+                        <field id="custom_colours">1</field>
+                    </depends>
+                </field>
+                <field id="text" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Text</label>
+                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Colour</backend_model>
+                    <depends>
+                        <field id="custom_colours">1</field>
+                    </depends>
+                </field>
+                <field id="button_background" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Button Background</label>
+                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Colour</backend_model>
+                    <depends>
+                        <field id="custom_colours">1</field>
+                    </depends>
+                </field>
+                <field id="button_text" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Button Text</label>
+                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Colour</backend_model>
+                    <depends>
+                        <field id="custom_colours">1</field>
+                    </depends>
+                </field>
+                <field id="link" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Links and Switches</label>
+                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Colour</backend_model>
+                    <depends>
+                        <field id="custom_colours">1</field>
+                    </depends>
+                </field>
+                <field id="font_family" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Font Family</label>
+                    <comment>Optional CSS font-family, for example "Open Sans", sans-serif. Empty uses the theme font.</comment>
+                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\FontFamily</backend_model>
+                </field>
+            </group>
+            <group id="log" translate="label" sortOrder="70" showInDefault="1" showInWebsite="1">
+                <label>Consent Log</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Record Consent Choices</label>
+                    <comment>Stores each choice with a random visitor id, time, categories, consent version and a keyed hash of the IP address. No names, emails or raw IPs are stored. See Softaware &gt; Cookie Consent &gt; Consent Log.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="anonymise_ip" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Truncate IP Before Hashing</label>
+                    <comment>Removes the last part of the IP address (last octet for IPv4, last 80 bits for IPv6) before it is hashed.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="retention_days" translate="label comment" type="text" sortOrder="30" showInDefault="1" canRestore="1">
+                    <label>Keep Entries For (Days)</label>
+                    <comment>Older entries are deleted by a daily cron job. 0 keeps entries forever.</comment>
+                    <validate>validate-digits</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
