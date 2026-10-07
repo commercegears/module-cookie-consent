@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.3.0 (2026-10-07)
+
+### Added
+
+- Third-party Scripts grid: keyword search (script name).
+- Consent Log grid: Store View filter.
+
+### Changed
+
+- Third-party Scripts: page title matches the menu ("Third-party Scripts"), one-sentence introduction, and an empty
+  state with "Add Your First Script" instead of an empty table. Status is shown as an Active / Inactive badge.
+  A notice appears when Cookie Consent is switched off.
+- Consent Log: introduction, an empty state, a notice when Record Consent Choices is off, and the store view on one
+  line instead of three (rows are a third of the height).
+- Script form: notes for Position, Store Views and Sort Order.
+- Settings: every field has a short comment with its default; long comments shortened; "Keep Entries For (Days)" is
+  hidden while the consent log is off; "Wait for Update (ms)" accepts only 0 or more.
+- The design-configuration warning uses a module CSS file instead of inline styles and a shorter text on the
+  settings page.
+
 ## 1.2.0 (2026-10-06)
 
 ### Changed

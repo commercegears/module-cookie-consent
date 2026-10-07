@@ -33,7 +33,7 @@ consent log. Works on Luma (and Blank-based themes) and Hyvä, with full-page ca
   as `data-sw-href`, and are activated in order once the category is accepted. Remote hosts are added to the CSP; inline
   scripts get a CSP nonce on pages with a strict CSP (checkout). A snippet with an unclosed `<script>` tag is refused.
   On a single tag, `data-sw-consent="necessary"` keeps it running without consent and `data-sw-consent="marketing"` uses
-  that category instead of the snippet's.
+  that category instead of the snippet's. The grid has keyword search (name), filters and an Active / Inactive badge.
 - **Scripts in Magento's design configuration** (chat widgets, pixels pasted into *Content > Design > Configuration >
   HTML Head > Scripts and Style Sheets* or *Footer > Miscellaneous HTML*): set *General > Scripts in Design Configuration*
   to a category and they wait for consent too (images, iframes and stylesheets from the shop's own domain keep loading).
