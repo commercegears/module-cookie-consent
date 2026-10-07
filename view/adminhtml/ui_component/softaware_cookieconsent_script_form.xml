@@ -95,6 +95,7 @@
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Position</label>
+                <notice translate="true">Where the snippet is placed once consent is given. Use what the vendor's instructions say; default: End of page body.</notice>
             </settings>
             <formElements>
                 <select>
@@ -108,6 +109,7 @@
             <settings>
                 <dataType>int</dataType>
                 <label translate="true">Store Views</label>
+                <notice translate="true">Hold Ctrl (Cmd on a Mac) to choose several. All Store Views includes store views added later.</notice>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
@@ -124,6 +126,7 @@
             <settings>
                 <dataType>number</dataType>
                 <label translate="true">Sort Order</label>
+                <notice translate="true">Scripts with a lower number are output first. Default: 0.</notice>
                 <validation>
                     <rule name="validate-number" xsi:type="boolean">true</rule>
                 </validation>

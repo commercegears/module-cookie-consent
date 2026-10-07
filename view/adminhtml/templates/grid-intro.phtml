@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © Softaware Commerce. All rights reserved.
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Softaware\CookieConsent\Block\Adminhtml\GridIntro;
+
+/** @var GridIntro $block */
+/** @var Escaper $escaper */
+// Texts come from layout arguments with translate="true".
+?>
+<?php if ($block->getData('intro')): ?>
+    <p class="sw-cc-intro"><?= $escaper->escapeHtml((string)$block->getData('intro')) ?></p>
+<?php endif; ?>
+<?php if ($block->isSwitchedOff()): ?>
+    <div class="message message-notice notice">
+        <div>
+            <?= $escaper->escapeHtml((string)$block->getData('off_text')) ?>
+            <a href="<?= $escaper->escapeUrl($block->getSettingsUrl()) ?>"><?= $escaper->escapeHtml(__('Open Settings')) ?></a>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if ($block->getData('listing') && $block->isEmpty()): ?>
+    <div class="sw-cc-empty">
+        <h2 class="sw-cc-empty__title"><?= $escaper->escapeHtml((string)$block->getData('empty_title')) ?></h2>
+        <p class="sw-cc-empty__text"><?= $escaper->escapeHtml((string)$block->getData('empty_text')) ?></p>
+        <?php if ($block->getButtonUrl()): ?>
+            <a class="action-primary sw-cc-empty__action" href="<?= $escaper->escapeUrl($block->getButtonUrl()) ?>">
+                <span><?= $escaper->escapeHtml((string)$block->getData('button_label')) ?></span>
+            </a>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>

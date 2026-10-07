@@ -17,6 +17,9 @@
         <index referenceId="SOFTAWARE_COOKIECONSENT_SCRIPT_IS_ACTIVE" indexType="btree">
             <column name="is_active"/>
         </index>
+        <index referenceId="SOFTAWARE_COOKIECONSENT_SCRIPT_NAME_FULLTEXT" indexType="fulltext">
+            <column name="name"/>
+        </index>
     </table>
     <table name="softaware_cookieconsent_log" resource="default" engine="innodb" comment="Softaware Cookie Consent: consent log">
         <column xsi:type="bigint" name="log_id" unsigned="true" nullable="false" identity="true" comment="Log ID"/>

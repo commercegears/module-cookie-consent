@@ -13,7 +13,8 @@
             "updated_at": true
         },
         "index": {
-            "SOFTAWARE_COOKIECONSENT_SCRIPT_IS_ACTIVE": true
+            "SOFTAWARE_COOKIECONSENT_SCRIPT_IS_ACTIVE": true,
+            "SOFTAWARE_COOKIECONSENT_SCRIPT_NAME": true
         },
         "constraint": {
             "PRIMARY": true

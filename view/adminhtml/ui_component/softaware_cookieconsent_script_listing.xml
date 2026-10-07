@@ -39,6 +39,7 @@
         </settings>
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
         <massaction name="listing_massaction">
@@ -96,8 +97,9 @@
                 <sortable>false</sortable>
             </settings>
         </column>
-        <column name="is_active" component="Magento_Ui/js/grid/columns/select">
+        <column name="is_active" class="Softaware\CookieConsent\Ui\Component\Listing\Column\StatusBadge" component="Magento_Ui/js/grid/columns/column">
             <settings>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
                 <options class="Softaware\CookieConsent\Model\Config\Source\ActiveStatus"/>
                 <filter>select</filter>
                 <dataType>select</dataType>

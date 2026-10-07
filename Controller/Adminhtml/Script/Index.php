@@ -25,7 +25,7 @@ class Index extends Action implements HttpGetActionInterface
     {
         $page = $this->pageFactory->create();
         $page->setActiveMenu('Softaware_CookieConsent::scripts');
-        $page->getConfig()->getTitle()->prepend(__('Consent-gated Third-party Scripts'));
+        $page->getConfig()->getTitle()->prepend(__('Third-party Scripts'));
         return $page;
     }
 }

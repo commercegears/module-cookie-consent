@@ -41,18 +41,23 @@ class DesignScriptsNotice extends Template
         }
         $html = '<div class="message message-warning warning sw-cc-design-scripts"><div>'
             . '<strong>' . $this->escapeHtml(__('These scripts in Content > Design > Configuration load without cookie consent:')) . '</strong>'
-            . '<ul style="margin:.5em 0 .5em 1.5em;list-style:disc">';
+            . '<ul>';
         foreach ($rows as $row) {
             $html .= '<li>' . $this->escapeHtml($row['source']) . ' (' . $this->escapeHtml(implode(', ', $row['stores'])) . '): '
                 . $this->escapeHtml(implode('; ', $row['items'])) . '</li>';
         }
         $settingsUrl = $this->getUrl('adminhtml/system_config/edit', ['section' => 'softaware_cookieconsent']);
-        $html .= '</ul>' . $this->escapeHtml(__(
-            'Either set "Scripts in Design Configuration" to a cookie category in the Cookie Consent settings (General), '
-            . 'move each snippet to Third-party Scripts, or add data-sw-consent="necessary" to a tag that really is necessary.'
-        ));
+        $html .= '</ul>' . ($this->getData('hide_settings_link')
+            ? $this->escapeHtml(__(
+                'Choose a category in "Scripts in Design Configuration" above, move each snippet to Third-party Scripts, '
+                . 'or add data-sw-consent="necessary" to a tag that really is necessary.'
+            ))
+            : $this->escapeHtml(__(
+                'Either set "Scripts in Design Configuration" to a cookie category in the Cookie Consent settings (General), '
+                . 'move each snippet to Third-party Scripts, or add data-sw-consent="necessary" to a tag that really is necessary.'
+            )));
         if (!$this->getData('hide_settings_link')) {
-            $html .= ' <a href="' . $this->escapeUrl($settingsUrl) . '">' . $this->escapeHtml(__('Open settings')) . '</a>';
+            $html .= ' <a href="' . $this->escapeUrl($settingsUrl) . '">' . $this->escapeHtml(__('Open Settings')) . '</a>';
         }
         return $html . '</div></div>';
     }

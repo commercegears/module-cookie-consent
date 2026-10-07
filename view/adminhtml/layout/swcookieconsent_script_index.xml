@@ -1,8 +1,25 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Softaware_CookieConsent::css/cookieconsent.css"/>
+    </head>
     <body>
         <referenceContainer name="content">
             <block class="Softaware\CookieConsent\Block\Adminhtml\DesignScriptsNotice" name="softaware.cookieconsent.design.notice" before="-"/>
+            <block class="Softaware\CookieConsent\Block\Adminhtml\GridIntro" name="softaware.cookieconsent.script.intro">
+                <arguments>
+                    <argument name="intro" xsi:type="string" translate="true">Tracking and marketing snippets added here (for example Meta Pixel, Hotjar or a chat widget) load only after the visitor accepts their cookie category.</argument>
+                    <argument name="table" xsi:type="string">softaware_cookieconsent_script</argument>
+                    <argument name="listing" xsi:type="string">softaware_cookieconsent_script_listing</argument>
+                    <argument name="empty_title" xsi:type="string" translate="true">No third-party scripts yet</argument>
+                    <argument name="empty_text" xsi:type="string" translate="true">Paste a vendor's snippet, choose its cookie category and store views, and it waits for the visitor's consent on the storefront.</argument>
+                    <argument name="button_label" xsi:type="string" translate="true">Add Your First Script</argument>
+                    <argument name="button_route" xsi:type="string">swcookieconsent/script/new</argument>
+                    <argument name="off_config_path" xsi:type="string">softaware_cookieconsent/general/enabled</argument>
+                    <argument name="off_text" xsi:type="string" translate="true">Cookie Consent is switched off in the default configuration, so these scripts are not output on the storefront.</argument>
+                    <argument name="settings_section" xsi:type="string">softaware_cookieconsent</argument>
+                </arguments>
+            </block>
             <uiComponent name="softaware_cookieconsent_script_listing"/>
         </referenceContainer>
     </body>
