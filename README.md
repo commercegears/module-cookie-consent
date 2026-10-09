@@ -5,6 +5,8 @@
 A cookie banner and preferences centre with Google Consent Mode v2, consent-gated third-party scripts and an optional
 consent log. Works on Luma (and Blank-based themes) and Hyvä, with full-page cache.
 
+Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
+
 ## Features
 
 - **Banner**: full-width bar (top/bottom) or box (bottom left/right, centre). "Accept all", "Reject all" (can be hidden,

@@ -1,0 +1,130 @@
+{
+    "tagline": "A free cookie banner and preferences window for Magento 2 with Google Consent Mode v2, scripts that wait for consent and an optional consent log, on Luma and Hyvä.",
+    "key_features": [
+        "Cookie banner as a bar or a box",
+        "Preferences window with one switch per category",
+        "Google Consent Mode v2 defaults at the top of the head",
+        "Third-party scripts held back until consent",
+        "Scripts in Design Configuration can wait too",
+        "Refused cookies deleted in the browser",
+        "Optional consent log with export and retention",
+        "Hyvä and Luma templates, full-page cache safe"
+    ],
+    "benefits": [
+        {
+            "icon": "shield",
+            "title": "Tags wait for the visitor",
+            "text": "Pixels, analytics and chat widgets you add in the admin are output as inactive markup and only run once their cookie category is accepted."
+        },
+        {
+            "icon": "chart",
+            "title": "Google tags get the right signal",
+            "text": "Consent Mode v2 defaults are printed before any CSS, JavaScript or tag manager, and returning visitors get their stored choice on the first hit."
+        },
+        {
+            "icon": "users",
+            "title": "Clear choices for shoppers",
+            "text": "Accept all, reject all or choose per category, in an accessible window that visitors can reopen at any time from the footer or a floating button."
+        }
+    ],
+    "showcase": [
+        {
+            "label": "Banner",
+            "title": "A banner that fits your theme",
+            "text": "Full-width bar at the top or bottom, or a box in a corner or the centre. It uses your theme's fonts and buttons, or your own colours.",
+            "image": "docs/images/banner-luma.png"
+        },
+        {
+            "label": "Preferences",
+            "title": "One switch per category",
+            "text": "Necessary, Preferences, Analytics and Marketing, plus categories of your own. Every text is a store view setting, so each language gets its own wording.",
+            "image": "docs/images/preferences-luma.png"
+        },
+        {
+            "label": "Hyvä",
+            "title": "Native Hyvä templates",
+            "text": "Tailwind templates for Hyvä 1.3+, driven by the same small vanilla script as Luma and picked automatically. Luma, Blank and their child themes get their own templates.",
+            "image": "docs/images/banner-hyva.png"
+        },
+        {
+            "label": "Mobile",
+            "title": "Comfortable on phones",
+            "text": "Buttons stack into full-width rows and the preferences window scrolls inside the screen, with a focus trap and Escape to close.",
+            "image": "docs/images/mobile.png"
+        },
+        {
+            "label": "Third-party Scripts",
+            "title": "Paste the snippet, pick the category",
+            "text": "Each snippet has a category, a position (page head or end of body) and store views. The grid also lists scripts in Design Configuration that still load without consent.",
+            "image": "docs/images/admin-scripts.png"
+        },
+        {
+            "label": "Consent Log",
+            "title": "Every choice on record",
+            "text": "Optional log with a random consent ID, the choice, the accepted categories, the consent version and a keyed hash of the IP address. Export to CSV or XML.",
+            "image": "docs/images/admin-log.png"
+        }
+    ],
+    "feature_groups": [
+        {
+            "title": "Banner and preferences",
+            "items": [
+                "Bar (top or bottom) or box (bottom left, bottom right, centre)",
+                "Accept all, Reject all and Manage preferences buttons",
+                "Optional cookie policy link",
+                "Footer link, floating button, CMS widget or any #cookie-settings link to reopen",
+                "Keyboard friendly: focus trap, Escape, labelled switches"
+            ]
+        },
+        {
+            "title": "Categories and cookies",
+            "items": [
+                "Necessary (always on), Preferences, Analytics, Marketing",
+                "Your own categories with their Google consent types",
+                "Consent stored in a first-party cookie with version and expiry",
+                "Raise the consent version to ask everybody again",
+                "Cookies of refused categories deleted in the browser"
+            ]
+        },
+        {
+            "title": "Google Consent Mode v2",
+            "items": [
+                "consent default before any tag, consent update on every choice",
+                "Optional regions, wait_for_update, ads_data_redaction, url_passthrough",
+                "dataLayer event softaware_consent_update for GTM triggers",
+                "Replaces Magento's own cookie restriction notice"
+            ]
+        },
+        {
+            "title": "Scripts and developers",
+            "items": [
+                "Admin-managed snippets per category, position and store view",
+                "Scripts, iframes, images and stylesheets held back until consent",
+                "Design Configuration scripts can wait for a category",
+                "JavaScript API (SwConsent) and a PHP ScriptBlocker",
+                "CLI: bump the consent version, clean the log"
+            ]
+        }
+    ],
+    "demo": {
+        "storefront": [
+            {
+                "label": "Luma storefront",
+                "url": "https://demo.softawarecommerce.com/",
+                "image": "docs/images/banner-luma.png"
+            },
+            {
+                "label": "Hyvä storefront",
+                "url": "https://demo.softawarecommerce.com/hyva/",
+                "image": "docs/images/banner-hyva.png"
+            }
+        ],
+        "admin": [
+            {
+                "label": "Admin panel",
+                "url": "https://demo.softawarecommerce.com/try-admin/cookie-consent",
+                "image": "docs/images/admin-scripts.png"
+            }
+        ]
+    }
+}
