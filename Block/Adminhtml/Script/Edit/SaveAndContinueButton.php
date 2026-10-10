@@ -17,6 +17,8 @@ class SaveAndContinueButton extends GenericButton implements ButtonProviderInter
     {
         return [
             'label' => __('Save and Continue Edit'),
+            // Empty on_click: without it Magento adds a link to the current route (location.href) that races the save.
+            'on_click' => '',
             'class' => 'save',
             'data_attribute' => [
                 'mage-init' => ['button' => ['event' => 'saveAndContinue']],

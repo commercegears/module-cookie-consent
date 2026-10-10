@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.3 (2026-10-10)
+
+### Fixed
+
+- Admin edit page: the Save and Save and Continue Edit buttons had no click action of their own, so Magento also
+  gave them a link to the current admin route's index page. Depending on timing, a click opened that page (404)
+  instead of saving. The buttons now only save.
+
 ## 1.3.2 (2026-10-10)
 
 ### Fixed
