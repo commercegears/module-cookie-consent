@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.3.2 (2026-10-10)
+
+### Fixed
+
+- Third-party Scripts: on pages served from Magento's built-in full-page cache the CSP header did not contain the
+  scripts' remote hosts (Magento rebuilds the header on a cache hit, and the dynamic CSP collector is only filled
+  while a page is rendered). After consent the browser reported the scripts (report-only) or, with the storefront CSP
+  in restrict mode, refused them. A CSP collector now adds the hosts of the store view's active scripts on every
+  storefront response, cached or not.
+
+### Changed
+
+- Docs: the user guide mentions the demo scripts on demo.softawarecommerce.com, and the Third-party Scripts
+  screenshot shows them.
+
 ## 1.3.1 (2026-10-09)
 
 ### Added

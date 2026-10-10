@@ -8,6 +8,11 @@ an optional consent log. This guide covers installation, every setting and day-t
 - Admin demo: https://demo.softawarecommerce.com/try-admin/cookie-consent
 - Changelog: [CHANGELOG.md](../CHANGELOG.md) · Questions: [FAQ](faq.md)
 
+On the demo, harmless demo scripts (one each for Analytics, Marketing and Preferences) show the gating at work: they
+load small public libraries from cdnjs.cloudflare.com and cdn.jsdelivr.net only once their category is accepted (watch
+the browser's Network tab), and a small "Demo" message appears in the bottom left corner when each one runs. The admin
+demo lists them under *Third-party Scripts*.
+
 ![Cookie banner on the Luma storefront](images/banner-luma.png)
 
 A note before you start: the module does what this guide describes and nothing more. Which tags you run, how you
