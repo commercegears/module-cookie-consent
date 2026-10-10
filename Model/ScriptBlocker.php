@@ -47,6 +47,9 @@ class ScriptBlocker
     /** @var string[]|null */
     private ?array $ownHosts = null;
 
+    /** @var array<string, array<string, true>>|null directive => hosts while hostsFor() runs */
+    private ?array $collecting = null;
+
     public function __construct(
         private readonly Config $config,
         private readonly DynamicCollector $cspCollector,
@@ -89,6 +92,24 @@ class ScriptBlocker
             $html,
             fn (string $part): string => $this->blockFragment($part, $category, $foreignResourcesOnly)
         );
+    }
+
+    /**
+     * Remote hosts that block() would add to the CSP for this snippet, without changing anything.
+     * Used by the CSP collector, so the hosts are also allowed on pages served from the full-page cache
+     * (where no block is rendered and Magento's dynamic CSP collector stays empty).
+     *
+     * @return array<string, string[]> CSP directive => hosts
+     */
+    public function hostsFor(string $html, string $category, bool $foreignResourcesOnly = false): array
+    {
+        $this->collecting = [];
+        try {
+            $this->block($html, $category, $foreignResourcesOnly);
+            return array_map('array_keys', $this->collecting);
+        } finally {
+            $this->collecting = null;
+        }
     }
 
     /**
@@ -271,6 +292,9 @@ class ScriptBlocker
      */
     private function nonceAttribute(): string
     {
+        if ($this->collecting !== null) {
+            return '';
+        }
         try {
             foreach ($this->cspConfigCollector->collect() as $policy) {
                 if ($policy instanceof FetchPolicy && $policy->getId() === 'script-src') {
@@ -336,6 +360,10 @@ class ScriptBlocker
     {
         $host = $this->hostOf(trim($url));
         if ($host === '' || !preg_match('/^[a-z0-9.\-]+$/i', $host)) {
+            return;
+        }
+        if ($this->collecting !== null) {
+            $this->collecting[$policyId][strtolower($host)] = true;
             return;
         }
         try {

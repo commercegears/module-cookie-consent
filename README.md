@@ -32,8 +32,9 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
 - **Consent-gated scripts** (Softaware > Cookie Consent > Third-party Scripts): paste a vendor snippet, choose category,
   position (head / end of body) and store views. `<script>` tags are rendered as `type="text/plain" data-sw-consent="…"`,
   `img`/`iframe`/`source`/`video`/`audio`/`embed` sources as `data-sw-src` / `data-sw-srcset` and external stylesheets
-  as `data-sw-href`, and are activated in order once the category is accepted. Remote hosts are added to the CSP; inline
-  scripts get a CSP nonce on pages with a strict CSP (checkout). A snippet with an unclosed `<script>` tag is refused.
+  as `data-sw-href`, and are activated in order once the category is accepted. Remote hosts are added to the CSP
+  (`script-src`, `style-src`, `img-src`, `frame-src`...) on every storefront page, also on pages served from the full-page
+  cache; inline scripts get a CSP nonce on pages with a strict CSP (checkout). A snippet with an unclosed `<script>` tag is refused.
   On a single tag, `data-sw-consent="necessary"` keeps it running without consent and `data-sw-consent="marketing"` uses
   that category instead of the snippet's. The grid has keyword search (name), filters and an Active / Inactive badge.
 - **Scripts in Magento's design configuration** (chat widgets, pixels pasted into *Content > Design > Configuration >

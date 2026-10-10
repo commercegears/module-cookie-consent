@@ -37,4 +37,13 @@
             </argument>
         </arguments>
     </type>
+    <!-- Global, not etc/frontend: an area-level "collectors" argument would replace Magento's collectors instead of
+         adding to them. The collector itself only works in the frontend area. -->
+    <type name="Magento\Csp\Model\CompositePolicyCollector">
+        <arguments>
+            <argument name="collectors" xsi:type="array">
+                <item name="softaware_cookieconsent_scripts" xsi:type="object" sortOrder="4">Softaware\CookieConsent\Model\Csp\ScriptHostCollector\Proxy</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
