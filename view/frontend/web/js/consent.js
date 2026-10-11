@@ -1,5 +1,5 @@
 /**
- * Softaware Cookie Consent - banner, preferences window and consent-gated scripts.
+ * CommerceGears Cookie Consent - banner, preferences window and consent-gated scripts.
  * Vanilla JS (no RequireJS, jQuery or Alpine), shared by Luma and Hyvä.
  *
  * Public API (window.SwConsent), available as a stub from the <head> and completed here:
@@ -9,7 +9,7 @@
  *   SwConsent.open()                         -> opens the preferences window
  *   SwConsent.acceptAll() / rejectAll() / save(['necessary', 'analytics'])
  * DOM event: document 'sw-consent:change' (detail = same object as onChange).
- * dataLayer event: 'softaware_consent_update' with sw_consent {category: 'granted'|'denied'}.
+ * dataLayer event: 'commercegears_consent_update' with sw_consent {category: 'granted'|'denied'}.
  */
 (function () {
     'use strict';
@@ -298,7 +298,7 @@
         }
         var detail = { categories: list.slice(), trigger: 'user', action: action || 'custom', version: state.v };
         (w.dataLayer = w.dataLayer || []).push({
-            event: 'softaware_consent_update',
+            event: 'commercegears_consent_update',
             sw_consent_trigger: 'user',
             sw_consent: categoryMap(list),
             sw_consent_categories: list.join(','),

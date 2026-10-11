@@ -1,21 +1,21 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Model;
+namespace CommerceGears\CookieConsent\Model;
 
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Serialize\Serializer\Json;
-use Softaware\CookieConsent\Api\Data\ScriptInterface;
-use Softaware\CookieConsent\Api\Data\ScriptInterfaceFactory;
-use Softaware\CookieConsent\Api\ScriptRepositoryInterface;
-use Softaware\CookieConsent\Model\ResourceModel\Script as ScriptResource;
-use Softaware\CookieConsent\Model\ResourceModel\Script\CollectionFactory;
+use CommerceGears\CookieConsent\Api\Data\ScriptInterface;
+use CommerceGears\CookieConsent\Api\Data\ScriptInterfaceFactory;
+use CommerceGears\CookieConsent\Api\ScriptRepositoryInterface;
+use CommerceGears\CookieConsent\Model\ResourceModel\Script as ScriptResource;
+use CommerceGears\CookieConsent\Model\ResourceModel\Script\CollectionFactory;
 
 class ScriptRepository implements ScriptRepositoryInterface
 {

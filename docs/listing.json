@@ -91,7 +91,7 @@
             "items": [
                 "consent default before any tag, consent update on every choice",
                 "Optional regions, wait_for_update, ads_data_redaction, url_passthrough",
-                "dataLayer event softaware_consent_update for GTM triggers",
+                "dataLayer event commercegears_consent_update for GTM triggers",
                 "Replaces Magento's own cookie restriction notice"
             ]
         },
@@ -110,19 +110,19 @@
         "storefront": [
             {
                 "label": "Luma storefront",
-                "url": "https://demo.softawarecommerce.com/",
+                "url": "https://demo.commercegears.com/",
                 "image": "docs/images/banner-luma.png"
             },
             {
                 "label": "Hyvä storefront",
-                "url": "https://demo.softawarecommerce.com/hyva/",
+                "url": "https://demo.commercegears.com/hyva/",
                 "image": "docs/images/banner-hyva.png"
             }
         ],
         "admin": [
             {
                 "label": "Admin panel",
-                "url": "https://demo.softawarecommerce.com/try-admin/cookie-consent",
+                "url": "https://demo.commercegears.com/try-admin/cookie-consent",
                 "image": "docs/images/admin-scripts.png"
             }
         ]

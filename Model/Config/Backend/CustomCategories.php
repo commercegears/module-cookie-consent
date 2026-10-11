@@ -1,14 +1,14 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Model\Config\Backend;
+namespace CommerceGears\CookieConsent\Model\Config\Backend;
 
 use Magento\Config\Model\Config\Backend\Serialized\ArraySerialized;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\CookieConsent\Model\Config;
+use CommerceGears\CookieConsent\Model\Config;
 
 /**
  * Validates the "Additional Categories" dynamic rows.

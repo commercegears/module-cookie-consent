@@ -1,14 +1,14 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Model\ResourceModel\Script;
+namespace CommerceGears\CookieConsent\Model\ResourceModel\Script;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Softaware\CookieConsent\Model\ResourceModel\Script as ScriptResource;
-use Softaware\CookieConsent\Model\Script;
+use CommerceGears\CookieConsent\Model\ResourceModel\Script as ScriptResource;
+use CommerceGears\CookieConsent\Model\Script;
 
 class Collection extends AbstractCollection
 {

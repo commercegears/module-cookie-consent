@@ -1,14 +1,14 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Ui\DataProvider;
+namespace CommerceGears\CookieConsent\Ui\DataProvider;
 
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Softaware\CookieConsent\Model\ResourceModel\Script\CollectionFactory;
-use Softaware\CookieConsent\Model\Script;
+use CommerceGears\CookieConsent\Model\ResourceModel\Script\CollectionFactory;
+use CommerceGears\CookieConsent\Model\Script;
 
 class ScriptFormDataProvider extends AbstractDataProvider
 {

@@ -1,19 +1,19 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Model\Csp;
+namespace CommerceGears\CookieConsent\Model\Csp;
 
 use Magento\Csp\Api\PolicyCollectorInterface;
 use Magento\Csp\Model\Policy\FetchPolicy;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\CookieConsent\Api\ScriptRepositoryInterface;
-use Softaware\CookieConsent\Model\Config;
-use Softaware\CookieConsent\Model\ScriptBlocker;
+use CommerceGears\CookieConsent\Api\ScriptRepositoryInterface;
+use CommerceGears\CookieConsent\Model\Config;
+use CommerceGears\CookieConsent\Model\ScriptBlocker;
 
 /**
  * Adds the remote hosts of the active Third-party Scripts of the current store view to the storefront CSP

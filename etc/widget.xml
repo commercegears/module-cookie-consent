@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
-    <widget id="softaware_cookieconsent_settings_link" class="Softaware\CookieConsent\Block\Widget\SettingsLink" is_email_compatible="false">
-        <label translate="true">Softaware Cookie Settings Link</label>
+    <widget id="commercegears_cookieconsent_settings_link" class="CommerceGears\CookieConsent\Block\Widget\SettingsLink" is_email_compatible="false">
+        <label translate="true">CommerceGears Cookie Settings Link</label>
         <description translate="true">A link that opens the cookie preferences window</description>
         <parameters>
             <parameter name="label" xsi:type="text" visible="true">

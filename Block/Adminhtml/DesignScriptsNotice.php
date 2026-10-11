@@ -1,14 +1,14 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Block\Adminhtml;
+namespace CommerceGears\CookieConsent\Block\Adminhtml;
 
 use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Template\Context;
-use Softaware\CookieConsent\Model\DesignScriptDetector;
+use CommerceGears\CookieConsent\Model\DesignScriptDetector;
 
 /**
  * Warning about scripts in Content > Design > Configuration that load without consent
@@ -29,7 +29,7 @@ class DesignScriptsNotice extends Template
         try {
             $rows = $this->detector->detect();
         } catch (\Throwable $e) {
-            $this->_logger->error('Softaware_CookieConsent: design script detection failed: ' . $e->getMessage());
+            $this->_logger->error('CommerceGears_CookieConsent: design script detection failed: ' . $e->getMessage());
             return '';
         }
         if ($rows === []) {
@@ -46,7 +46,7 @@ class DesignScriptsNotice extends Template
             $html .= '<li>' . $this->escapeHtml($row['source']) . ' (' . $this->escapeHtml(implode(', ', $row['stores'])) . '): '
                 . $this->escapeHtml(implode('; ', $row['items'])) . '</li>';
         }
-        $settingsUrl = $this->getUrl('adminhtml/system_config/edit', ['section' => 'softaware_cookieconsent']);
+        $settingsUrl = $this->getUrl('adminhtml/system_config/edit', ['section' => 'commercegears_cookieconsent']);
         $html .= '</ul>' . ($this->getData('hide_settings_link')
             ? $this->escapeHtml(__(
                 'Choose a category in "Scripts in Design Configuration" above, move each snippet to Third-party Scripts, '

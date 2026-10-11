@@ -1,15 +1,15 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Model;
+namespace CommerceGears\CookieConsent\Model;
 
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\CookieConsent\Model\ResourceModel\Log as LogResource;
+use CommerceGears\CookieConsent\Model\ResourceModel\Log as LogResource;
 
 /**
  * Validates and stores one consent choice. No personal data is stored: the consent id is a random UUID

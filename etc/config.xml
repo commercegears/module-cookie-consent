@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <softaware_cookieconsent>
+        <commercegears_cookieconsent>
             <general>
                 <enabled>0</enabled>
                 <consent_version>1</consent_version>
@@ -65,6 +65,6 @@ marketing: _fbp, _fbc, _gcl_*, _uetsid, _uetvid, _ttp, _pin_unauth, _tt_enable_c
                 <anonymise_ip>1</anonymise_ip>
                 <retention_days>730</retention_days>
             </log>
-        </softaware_cookieconsent>
+        </commercegears_cookieconsent>
     </default>
 </config>

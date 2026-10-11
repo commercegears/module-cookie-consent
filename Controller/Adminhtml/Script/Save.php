@@ -1,24 +1,24 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Controller\Adminhtml\Script;
+namespace CommerceGears\CookieConsent\Controller\Adminhtml\Script;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\CookieConsent\Api\Data\ScriptInterface;
-use Softaware\CookieConsent\Api\Data\ScriptInterfaceFactory;
-use Softaware\CookieConsent\Api\ScriptRepositoryInterface;
-use Softaware\CookieConsent\Model\Config\Source\Categories;
+use CommerceGears\CookieConsent\Api\Data\ScriptInterface;
+use CommerceGears\CookieConsent\Api\Data\ScriptInterfaceFactory;
+use CommerceGears\CookieConsent\Api\ScriptRepositoryInterface;
+use CommerceGears\CookieConsent\Model\Config\Source\Categories;
 
 class Save extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_CookieConsent::scripts';
+    public const ADMIN_RESOURCE = 'CommerceGears_CookieConsent::scripts';
 
     public function __construct(
         Context $context,

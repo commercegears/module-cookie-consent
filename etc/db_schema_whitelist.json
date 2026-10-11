@@ -1,5 +1,5 @@
 {
-    "softaware_cookieconsent_script": {
+    "commercegears_cookieconsent_script": {
         "column": {
             "script_id": true,
             "name": true,
@@ -13,14 +13,14 @@
             "updated_at": true
         },
         "index": {
-            "SOFTAWARE_COOKIECONSENT_SCRIPT_IS_ACTIVE": true,
-            "SOFTAWARE_COOKIECONSENT_SCRIPT_NAME": true
+            "COMMERCEGEARS_COOKIECONSENT_SCRIPT_IS_ACTIVE": true,
+            "COMMERCEGEARS_COOKIECONSENT_SCRIPT_NAME": true
         },
         "constraint": {
             "PRIMARY": true
         }
     },
-    "softaware_cookieconsent_log": {
+    "commercegears_cookieconsent_log": {
         "column": {
             "log_id": true,
             "consent_id": true,
@@ -32,9 +32,9 @@
             "created_at": true
         },
         "index": {
-            "SOFTAWARE_COOKIECONSENT_LOG_CREATED_AT": true,
-            "SOFTAWARE_COOKIECONSENT_LOG_CONSENT_ID": true,
-            "SOFTAWARE_COOKIECONSENT_LOG_IP_HASH_CREATED_AT": true
+            "COMMERCEGEARS_COOKIECONSENT_LOG_CREATED_AT": true,
+            "COMMERCEGEARS_COOKIECONSENT_LOG_CONSENT_ID": true,
+            "COMMERCEGEARS_COOKIECONSENT_LOG_IP_HASH_CREATED_AT": true
         },
         "constraint": {
             "PRIMARY": true

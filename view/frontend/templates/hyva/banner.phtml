@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  *
  * Cookie banner + preferences window for Hyvä themes (Tailwind classes, no Alpine needed:
  * the same vanilla consent.js as Luma drives it through data attributes).
@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
-use Softaware\CookieConsent\ViewModel\Banner;
+use CommerceGears\CookieConsent\ViewModel\Banner;
 
 /** @var Template $block */
 /** @var Escaper $escaper */
@@ -153,4 +153,4 @@ $switchClasses = 'sw-cc-switch relative h-6 w-11 shrink-0 cursor-pointer appeara
         </button>
     <?php endif; ?>
 </div>
-<script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Softaware_CookieConsent::js/consent.js')) ?>" defer></script>
+<script src="<?= $escaper->escapeUrl($block->getViewFileUrl('CommerceGears_CookieConsent::js/consent.js')) ?>" defer></script>

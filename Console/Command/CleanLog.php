@@ -1,13 +1,13 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Console\Command;
+namespace CommerceGears\CookieConsent\Console\Command;
 
-use Softaware\CookieConsent\Model\Config;
-use Softaware\CookieConsent\Model\ResourceModel\Log as LogResource;
+use CommerceGears\CookieConsent\Model\Config;
+use CommerceGears\CookieConsent\Model\ResourceModel\Log as LogResource;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -25,7 +25,7 @@ class CleanLog extends Command
 
     protected function configure(): void
     {
-        $this->setName('softaware:cookie-consent:log:clean')
+        $this->setName('commercegears:cookie-consent:log:clean')
             ->setDescription('Delete consent log entries older than the retention period')
             ->addOption('days', null, InputOption::VALUE_REQUIRED, 'Override the configured retention (days)');
     }

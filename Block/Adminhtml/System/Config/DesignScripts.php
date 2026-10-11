@@ -1,14 +1,14 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Block\Adminhtml\System\Config;
+namespace CommerceGears\CookieConsent\Block\Adminhtml\System\Config;
 
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
-use Softaware\CookieConsent\Block\Adminhtml\DesignScriptsNotice;
+use CommerceGears\CookieConsent\Block\Adminhtml\DesignScriptsNotice;
 
 /**
  * Read-only config row: lists scripts in the design configuration that load without consent.

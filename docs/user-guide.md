@@ -3,9 +3,9 @@
 A cookie banner and preferences window with **Google Consent Mode v2**, third-party scripts that wait for consent and
 an optional consent log. This guide covers installation, every setting and day-to-day use.
 
-- Demo (Luma): https://demo.softawarecommerce.com/
-- Demo (Hyvä): https://demo.softawarecommerce.com/hyva/
-- Admin demo: https://demo.softawarecommerce.com/try-admin/cookie-consent
+- Demo (Luma): https://demo.commercegears.com/
+- Demo (Hyvä): https://demo.commercegears.com/hyva/
+- Admin demo: https://demo.commercegears.com/try-admin/cookie-consent
 - Changelog: [CHANGELOG.md](../CHANGELOG.md) · Questions: [FAQ](faq.md)
 
 On the demo, harmless demo scripts (one each for Analytics, Marketing and Preferences) show the gating at work: they
@@ -26,17 +26,17 @@ to your shop.
 | Magento | Open Source or Adobe Commerce 2.4.7 to 2.4.9 |
 | PHP | 8.2 to 8.5 |
 | Themes | Luma, Blank and themes based on them; Hyvä 1.3+ |
-| Other | `softaware/module-core` (installed automatically) |
+| Other | `commercegears/module-core` (installed automatically) |
 
 ## 2. Installation
 
-Cookie Consent is free. Install it with Composer from repo.softawarecommerce.com, using the Composer keys from your
-account on softawarecommerce.com (see https://softawarecommerce.com/shop/composer-access/):
+Cookie Consent is free. Install it with Composer from repo.commercegears.com, using the Composer keys from your
+account on commercegears.com (see https://commercegears.com/shop/composer-access/):
 
 ```bash
-composer config repositories.softaware composer https://repo.softawarecommerce.com
-composer config --auth http-basic.repo.softawarecommerce.com PUBLIC_KEY PRIVATE_KEY
-composer require softaware/module-cookie-consent
+composer config repositories.commercegears composer https://repo.commercegears.com
+composer config --auth http-basic.repo.commercegears.com PUBLIC_KEY PRIVATE_KEY
+composer require commercegears/module-cookie-consent
 bin/magento setup:upgrade
 bin/magento setup:di:compile            # production mode only
 bin/magento setup:static-content:deploy # production mode only
@@ -46,15 +46,15 @@ bin/magento cache:flush
 On Hyvä the module's templates are picked automatically, and the module registers itself for Tailwind source
 scanning. If you build your theme's CSS yourself, run your usual Hyvä build after installing.
 
-To update later: `composer update softaware/module-cookie-consent`, then the same `bin/magento` commands.
+To update later: `composer update commercegears/module-cookie-consent`, then the same `bin/magento` commands.
 
 ## 3. Quick start
 
-1. Open **Stores > Configuration > Softaware > Cookie Consent** (also under **Softaware > Cookie Consent > Settings**).
+1. Open **Stores > Configuration > CommerceGears > Cookie Consent** (also under **CommerceGears > Cookie Consent > Settings**).
 2. **General > Enabled = Yes**. The module is off after installation, so nothing changes until you switch it on.
 3. Set **Cookie / Privacy Policy URL** to your cookie policy page.
 4. Check the texts under **Banner**, **Preferences Window** and **Cookie Categories** for each store view.
-5. Move your tracking snippets to **Softaware > Cookie Consent > Third-party Scripts** (section 5), or set
+5. Move your tracking snippets to **CommerceGears > Cookie Consent > Third-party Scripts** (section 5), or set
    **General > Scripts in Design Configuration** to a category (section 6).
 6. **Save Config** and flush the cache. Open the shop in a private window: the banner appears.
 
@@ -135,7 +135,7 @@ values), and optionally a **Font Family**.
 
 ## 5. Third-party Scripts
 
-**Softaware > Cookie Consent > Third-party Scripts** holds the vendor snippets that must wait for consent, such as a
+**CommerceGears > Cookie Consent > Third-party Scripts** holds the vendor snippets that must wait for consent, such as a
 Meta Pixel, Hotjar or a chat widget.
 
 ![Third-party Scripts grid](images/admin-scripts.png)
@@ -183,7 +183,7 @@ focus returns to the button that opened it.
 **The stored choice.** The first-party cookie `sw_consent` holds the version, a random ID, the time and the accepted
 categories. Visitors are asked again when the consent version changes or the choice expires.
 
-**Changing their mind.** The footer link, the floating button, the CMS widget **Softaware Cookie Settings Link**, or
+**Changing their mind.** The footer link, the floating button, the CMS widget **CommerceGears Cookie Settings Link**, or
 any link to `#cookie-settings` (or element with `data-sw-cc-open`) opens the preferences again. Withdrawing a category
 deletes its listed cookies and reloads the page, so scripts that already ran stop.
 
@@ -195,7 +195,7 @@ deletes its listed cookies and reloads the page, so scripts that already ran sto
 
 ## 8. Consent log
 
-With **Record Consent Choices** on, every choice is stored and shown under **Softaware > Cookie Consent > Consent
+With **Record Consent Choices** on, every choice is stored and shown under **CommerceGears > Cookie Consent > Consent
 Log**: date, consent ID, choice (Accepted all, Rejected all, Custom choice), accepted categories, consent version,
 store view and IP hash. The consent ID is the random ID stored in the visitor's `sw_consent` cookie.
 
@@ -210,7 +210,7 @@ XML export and mass delete. The public logging endpoint stores at most 60 entrie
 **dataLayer.** On every page with a stored choice and on every new choice, this event is pushed:
 
 ```js
-{event: 'softaware_consent_update', sw_consent_trigger: 'stored' | 'user',
+{event: 'commercegears_consent_update', sw_consent_trigger: 'stored' | 'user',
  sw_consent: {necessary: 'granted', analytics: 'denied', ...},
  sw_consent_categories: 'necessary,analytics', sw_consent_version: 1}
 ```
@@ -231,15 +231,15 @@ SwConsent.open(); SwConsent.acceptAll(); SwConsent.rejectAll(); SwConsent.save([
 <iframe data-sw-consent="marketing" data-sw-src="https://www.youtube-nocookie.com/embed/..."></iframe>
 ```
 
-**PHP:** inject `Softaware\CookieConsent\Model\ScriptBlocker` (or use the view model
-`Softaware\CookieConsent\ViewModel\ScriptBlocker` in templates) and call `block($html, 'marketing')` or
+**PHP:** inject `CommerceGears\CookieConsent\Model\ScriptBlocker` (or use the view model
+`CommerceGears\CookieConsent\ViewModel\ScriptBlocker` in templates) and call `block($html, 'marketing')` or
 `attributes('analytics')`. When the module is disabled both return the markup unchanged.
 
 ## 10. Command line
 
 ```bash
-bin/magento softaware:cookie-consent:bump-version
-bin/magento softaware:cookie-consent:log:clean [--days=N]
+bin/magento commercegears:cookie-consent:bump-version
+bin/magento commercegears:cookie-consent:log:clean [--days=N]
 ```
 
 `bump-version` increases the consent version in every scope where it is set and cleans the config and full-page
@@ -248,7 +248,7 @@ caches, so every visitor is asked again. `log:clean` deletes log entries older t
 
 ## 11. Permissions (ACL)
 
-Under **Softaware > Cookie Consent** in **System > Permissions > User Roles**:
+Under **CommerceGears > Cookie Consent** in **System > Permissions > User Roles**:
 
 | Resource | Allows |
 | --- | --- |
@@ -271,8 +271,8 @@ Under **Softaware > Cookie Consent** in **System > Permissions > User Roles**:
 ## 13. Uninstall
 
 ```bash
-bin/magento module:disable Softaware_CookieConsent
-composer remove softaware/module-cookie-consent
+bin/magento module:disable CommerceGears_CookieConsent
+composer remove commercegears/module-cookie-consent
 bin/magento setup:upgrade
 bin/magento cache:flush
 ```

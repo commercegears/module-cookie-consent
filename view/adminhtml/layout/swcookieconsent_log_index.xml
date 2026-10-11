@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Softaware_CookieConsent::css/cookieconsent.css"/>
+        <css src="CommerceGears_CookieConsent::css/cookieconsent.css"/>
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Softaware\CookieConsent\Block\Adminhtml\GridIntro" name="softaware.cookieconsent.log.intro" before="-">
+            <block class="CommerceGears\CookieConsent\Block\Adminhtml\GridIntro" name="commercegears.cookieconsent.log.intro" before="-">
                 <arguments>
                     <argument name="intro" xsi:type="string" translate="true">Each visitor's cookie choice with a random visitor ID, the accepted categories and the consent version, as proof of consent. No names, email addresses or raw IP addresses are stored.</argument>
-                    <argument name="table" xsi:type="string">softaware_cookieconsent_log</argument>
-                    <argument name="listing" xsi:type="string">softaware_cookieconsent_log_listing</argument>
+                    <argument name="table" xsi:type="string">commercegears_cookieconsent_log</argument>
+                    <argument name="listing" xsi:type="string">commercegears_cookieconsent_log_listing</argument>
                     <argument name="empty_title" xsi:type="string" translate="true">No consent choices recorded yet</argument>
                     <argument name="empty_text" xsi:type="string" translate="true">Entries appear here as soon as visitors accept or reject cookies while Record Consent Choices is switched on.</argument>
-                    <argument name="off_config_path" xsi:type="string">softaware_cookieconsent/log/enabled</argument>
+                    <argument name="off_config_path" xsi:type="string">commercegears_cookieconsent/log/enabled</argument>
                     <argument name="off_text" xsi:type="string" translate="true">Record Consent Choices is switched off in the default configuration, so new choices are not logged.</argument>
-                    <argument name="settings_section" xsi:type="string">softaware_cookieconsent</argument>
+                    <argument name="settings_section" xsi:type="string">commercegears_cookieconsent</argument>
                 </arguments>
             </block>
-            <uiComponent name="softaware_cookieconsent_log_listing"/>
+            <uiComponent name="commercegears_cookieconsent_log_listing"/>
         </referenceContainer>
     </body>
 </page>

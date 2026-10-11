@@ -1,21 +1,21 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Model;
+namespace CommerceGears\CookieConsent\Model;
 
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractModel;
-use Softaware\CookieConsent\Api\Data\ScriptInterface;
+use CommerceGears\CookieConsent\Api\Data\ScriptInterface;
 
 class Script extends AbstractModel implements ScriptInterface, IdentityInterface
 {
     public const CACHE_TAG = 'sw_cc_script';
 
     /** @var string */
-    protected $_eventPrefix = 'softaware_cookieconsent_script';
+    protected $_eventPrefix = 'commercegears_cookieconsent_script';
 
     /** @var string */
     protected $_cacheTag = self::CACHE_TAG;

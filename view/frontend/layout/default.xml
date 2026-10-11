@@ -1,35 +1,35 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Softaware_CookieConsent::css/consent.css"/>
+        <css src="CommerceGears_CookieConsent::css/consent.css"/>
     </head>
     <body>
         <referenceBlock name="head.additional">
-            <block class="Softaware\CookieConsent\Block\Scripts" name="softaware.cookieconsent.scripts.head">
+            <block class="CommerceGears\CookieConsent\Block\Scripts" name="commercegears.cookieconsent.scripts.head">
                 <arguments>
                     <argument name="position" xsi:type="string">head</argument>
                 </arguments>
             </block>
         </referenceBlock>
         <referenceContainer name="before.body.end">
-            <block class="Magento\Framework\View\Element\Template" name="softaware.cookieconsent.banner"
-                   template="Softaware_CookieConsent::banner.phtml" before="-">
+            <block class="Magento\Framework\View\Element\Template" name="commercegears.cookieconsent.banner"
+                   template="CommerceGears_CookieConsent::banner.phtml" before="-">
                 <arguments>
-                    <argument name="view_model" xsi:type="object">Softaware\CookieConsent\ViewModel\Banner</argument>
+                    <argument name="view_model" xsi:type="object">CommerceGears\CookieConsent\ViewModel\Banner</argument>
                 </arguments>
             </block>
-            <block class="Softaware\CookieConsent\Block\Scripts" name="softaware.cookieconsent.scripts.body"
-                   after="softaware.cookieconsent.banner">
+            <block class="CommerceGears\CookieConsent\Block\Scripts" name="commercegears.cookieconsent.scripts.body"
+                   after="commercegears.cookieconsent.banner">
                 <arguments>
                     <argument name="position" xsi:type="string">body_end</argument>
                 </arguments>
             </block>
         </referenceContainer>
         <referenceBlock name="footer_links">
-            <block class="Magento\Framework\View\Element\Template" name="softaware.cookieconsent.footer.link"
-                   template="Softaware_CookieConsent::footer-link.phtml" after="-">
+            <block class="Magento\Framework\View\Element\Template" name="commercegears.cookieconsent.footer.link"
+                   template="CommerceGears_CookieConsent::footer-link.phtml" after="-">
                 <arguments>
-                    <argument name="view_model" xsi:type="object">Softaware\CookieConsent\ViewModel\Banner</argument>
+                    <argument name="view_model" xsi:type="object">CommerceGears\CookieConsent\ViewModel\Banner</argument>
                 </arguments>
             </block>
         </referenceBlock>

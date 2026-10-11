@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Console\Command;
+namespace CommerceGears\CookieConsent\Console\Command;
 
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class BumpVersion extends Command
 {
-    private const PATH = 'softaware_cookieconsent/general/consent_version';
+    private const PATH = 'commercegears_cookieconsent/general/consent_version';
 
     public function __construct(
         private readonly ResourceConnection $resource,
@@ -33,7 +33,7 @@ class BumpVersion extends Command
 
     protected function configure(): void
     {
-        $this->setName('softaware:cookie-consent:bump-version')
+        $this->setName('commercegears:cookie-consent:bump-version')
             ->setDescription('Increase the cookie consent version so every visitor is asked again');
     }
 

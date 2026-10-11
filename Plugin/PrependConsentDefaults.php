@@ -1,14 +1,14 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Plugin;
+namespace CommerceGears\CookieConsent\Plugin;
 
 use Magento\Framework\View\Page\Config\Renderer;
 use Psr\Log\LoggerInterface;
-use Softaware\CookieConsent\Model\HeadScript;
+use CommerceGears\CookieConsent\Model\HeadScript;
 
 /**
  * Puts the consent defaults directly after <meta>/<title>, before any CSS, JS or tag manager snippet.
@@ -26,7 +26,7 @@ class PrependConsentDefaults
         try {
             return $result . $this->headScript->render();
         } catch (\Throwable $e) {
-            $this->logger->error('Softaware_CookieConsent: head script failed: ' . $e->getMessage());
+            $this->logger->error('CommerceGears_CookieConsent: head script failed: ' . $e->getMessage());
             return $result;
         }
     }

@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Model;
+namespace CommerceGears\CookieConsent\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Serialize\Serializer\Json;
@@ -12,11 +12,11 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
- * Typed access to the module configuration (section softaware_cookieconsent).
+ * Typed access to the module configuration (section commercegears_cookieconsent).
  */
 class Config
 {
-    public const SECTION = 'softaware_cookieconsent';
+    public const SECTION = 'commercegears_cookieconsent';
     public const COOKIE_NAME = 'sw_consent';
 
     public const CATEGORY_NECESSARY = 'necessary';

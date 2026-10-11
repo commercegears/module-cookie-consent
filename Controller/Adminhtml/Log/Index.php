@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Controller\Adminhtml\Log;
+namespace CommerceGears\CookieConsent\Controller\Adminhtml\Log;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -14,7 +14,7 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Index extends Action implements HttpGetActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_CookieConsent::log';
+    public const ADMIN_RESOURCE = 'CommerceGears_CookieConsent::log';
 
     public function __construct(Context $context, private readonly PageFactory $pageFactory)
     {
@@ -24,7 +24,7 @@ class Index extends Action implements HttpGetActionInterface
     public function execute(): Page
     {
         $page = $this->pageFactory->create();
-        $page->setActiveMenu('Softaware_CookieConsent::log');
+        $page->setActiveMenu('CommerceGears_CookieConsent::log');
         $page->getConfig()->getTitle()->prepend(__('Consent Log'));
         return $page;
     }

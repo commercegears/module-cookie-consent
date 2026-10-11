@@ -1,14 +1,14 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Model\ResourceModel\Log;
+namespace CommerceGears\CookieConsent\Model\ResourceModel\Log;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Softaware\CookieConsent\Model\Log;
-use Softaware\CookieConsent\Model\ResourceModel\Log as LogResource;
+use CommerceGears\CookieConsent\Model\Log;
+use CommerceGears\CookieConsent\Model\ResourceModel\Log as LogResource;
 
 class Collection extends AbstractCollection
 {

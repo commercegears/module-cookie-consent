@@ -1,13 +1,13 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Plugin;
+namespace CommerceGears\CookieConsent\Plugin;
 
 use Magento\Cookie\Helper\Cookie;
-use Softaware\CookieConsent\Model\Config;
+use CommerceGears\CookieConsent\Model\Config;
 
 /**
  * Switches off Magento's cookie restriction notice (Luma and Hyvä) while this module handles consent.

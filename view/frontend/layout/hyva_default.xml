@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <remove src="Softaware_CookieConsent::css/consent.css"/>
+        <remove src="CommerceGears_CookieConsent::css/consent.css"/>
     </head>
     <body>
-        <referenceBlock name="softaware.cookieconsent.banner" template="Softaware_CookieConsent::hyva/banner.phtml"/>
-        <referenceBlock name="softaware.cookieconsent.footer.link" remove="true"/>
+        <referenceBlock name="commercegears.cookieconsent.banner" template="CommerceGears_CookieConsent::hyva/banner.phtml"/>
+        <referenceBlock name="commercegears.cookieconsent.footer.link" remove="true"/>
         <referenceBlock name="footer-content">
-            <block class="Magento\Framework\View\Element\Template" name="softaware.cookieconsent.footer.link.hyva"
-                   template="Softaware_CookieConsent::hyva/footer-link.phtml" after="-">
+            <block class="Magento\Framework\View\Element\Template" name="commercegears.cookieconsent.footer.link.hyva"
+                   template="CommerceGears_CookieConsent::hyva/footer-link.phtml" after="-">
                 <arguments>
-                    <argument name="view_model" xsi:type="object">Softaware\CookieConsent\ViewModel\Banner</argument>
+                    <argument name="view_model" xsi:type="object">CommerceGears\CookieConsent\ViewModel\Banner</argument>
                 </arguments>
             </block>
         </referenceBlock>

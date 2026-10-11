@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Model\ResourceModel;
+namespace CommerceGears\CookieConsent\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
@@ -12,7 +12,7 @@ class Log extends AbstractDb
 {
     protected function _construct(): void
     {
-        $this->_init('softaware_cookieconsent_log', 'log_id');
+        $this->_init('commercegears_cookieconsent_log', 'log_id');
     }
 
     /**

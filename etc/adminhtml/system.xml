@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="softaware_cookieconsent" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="commercegears_cookieconsent" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
             <label>Cookie Consent</label>
-            <tab>softaware</tab>
-            <resource>Softaware_CookieConsent::config</resource>
+            <tab>commercegears</tab>
+            <resource>CommerceGears_CookieConsent::config</resource>
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
@@ -15,7 +15,7 @@
                 </field>
                 <field id="consent_version" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>Consent Version</label>
-                    <comment>Stored with every visitor's choice. Increase it (for example after adding a new tracking tool) to ask every visitor again; also possible with bin/magento softaware:cookie-consent:bump-version. Default: 1.</comment>
+                    <comment>Stored with every visitor's choice. Increase it (for example after adding a new tracking tool) to ask every visitor again; also possible with bin/magento commercegears:cookie-consent:bump-version. Default: 1.</comment>
                     <validate>required-entry validate-digits validate-digits-range digits-range-1-99999</validate>
                 </field>
                 <field id="expiry_days" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" canRestore="1">
@@ -35,17 +35,17 @@
                 </field>
                 <field id="reopen_link" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>"Cookie Settings" Link</label>
-                    <comment>Lets visitors change their choice later. Default: Footer link. A link to #cookie-settings or the "Softaware Cookie Settings Link" widget also works in CMS content.</comment>
-                    <source_model>Softaware\CookieConsent\Model\Config\Source\ReopenLink</source_model>
+                    <comment>Lets visitors change their choice later. Default: Footer link. A link to #cookie-settings or the "CommerceGears Cookie Settings Link" widget also works in CMS content.</comment>
+                    <source_model>CommerceGears\CookieConsent\Model\Config\Source\ReopenLink</source_model>
                 </field>
                 <field id="design_scripts" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Scripts in Design Configuration</label>
                     <comment>Chat widgets, pixels and other tags pasted into Content &gt; Design &gt; Configuration (HTML Head, Footer) run before the visitor chooses. Pick a category to make them wait for consent. Default: Run without consent. Per tag, data-sw-consent="necessary" always runs and data-sw-consent="marketing" uses that category.</comment>
-                    <source_model>Softaware\CookieConsent\Model\Config\Source\DesignScriptsCategory</source_model>
+                    <source_model>CommerceGears\CookieConsent\Model\Config\Source\DesignScriptsCategory</source_model>
                 </field>
                 <field id="design_scripts_found" translate="label" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Found in Design Configuration</label>
-                    <frontend_model>Softaware\CookieConsent\Block\Adminhtml\System\Config\DesignScripts</frontend_model>
+                    <frontend_model>CommerceGears\CookieConsent\Block\Adminhtml\System\Config\DesignScripts</frontend_model>
                 </field>
             </group>
             <group id="banner" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -53,12 +53,12 @@
                 <field id="layout" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Layout</label>
                     <comment>Bar: full width at the top or bottom of the page. Box: a small panel in a corner. Default: Bar.</comment>
-                    <source_model>Softaware\CookieConsent\Model\Config\Source\Layout</source_model>
+                    <source_model>CommerceGears\CookieConsent\Model\Config\Source\Layout</source_model>
                 </field>
                 <field id="bar_position" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Position</label>
                     <comment>Default: Bottom.</comment>
-                    <source_model>Softaware\CookieConsent\Model\Config\Source\BarPosition</source_model>
+                    <source_model>CommerceGears\CookieConsent\Model\Config\Source\BarPosition</source_model>
                     <depends>
                         <field id="layout">bar</field>
                     </depends>
@@ -66,7 +66,7 @@
                 <field id="box_position" translate="label comment" type="select" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Position</label>
                     <comment>Default: Bottom left.</comment>
-                    <source_model>Softaware\CookieConsent\Model\Config\Source\BoxPosition</source_model>
+                    <source_model>CommerceGears\CookieConsent\Model\Config\Source\BoxPosition</source_model>
                     <depends>
                         <field id="layout">box</field>
                     </depends>
@@ -205,14 +205,14 @@
                 </field>
                 <field id="custom" translate="label comment" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Additional Categories</label>
-                    <frontend_model>Softaware\CookieConsent\Block\Adminhtml\System\Config\CustomCategories</frontend_model>
-                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\CustomCategories</backend_model>
+                    <frontend_model>CommerceGears\CookieConsent\Block\Adminhtml\System\Config\CustomCategories</frontend_model>
+                    <backend_model>CommerceGears\CookieConsent\Model\Config\Backend\CustomCategories</backend_model>
                     <comment><![CDATA[Code: lower-case letters, digits and underscores (used in data-sw-consent="code" and in the consent cookie). Google consent types: optional, comma-separated (for example ad_storage). A consent type is granted only when every category mapped to it is accepted.]]></comment>
                 </field>
                 <field id="cleanup_cookies" translate="label comment" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Cookies to Delete When Refused</label>
                     <comment><![CDATA[One line per category: <code>category: cookie_name, prefix*</code>. When a visitor refuses or withdraws a category, these first-party cookies are deleted in the browser (on every page while the category stays refused). Cookies of other domains cannot be deleted. Shop cookies (session, form key, basket) are never deleted.]]></comment>
-                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\CookieList</backend_model>
+                    <backend_model>CommerceGears\CookieConsent\Model\Config\Backend\CookieList</backend_model>
                 </field>
             </group>
             <group id="consent_mode" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -249,7 +249,7 @@
                 <field id="regions" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Regions Requiring Consent</label>
                     <comment>Optional. Comma-separated ISO 3166-2 codes (for example GB, DE, ES, US-CA). Empty means consent defaults to denied everywhere. When filled, Google applies the denied defaults in these regions only. The banner itself is shown to every visitor.</comment>
-                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Regions</backend_model>
+                    <backend_model>CommerceGears\CookieConsent\Model\Config\Backend\Regions</backend_model>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>
@@ -257,7 +257,7 @@
                 <field id="other_regions_default" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Default for Other Regions</label>
                     <comment>Consent default outside the regions above, until the visitor chooses. Default: Granted.</comment>
-                    <source_model>Softaware\CookieConsent\Model\Config\Source\GrantedDenied</source_model>
+                    <source_model>CommerceGears\CookieConsent\Model\Config\Source\GrantedDenied</source_model>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>
@@ -274,7 +274,7 @@
                 <field id="background" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Background</label>
                     <comment>Hex colour, for example #ffffff.</comment>
-                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Colour</backend_model>
+                    <backend_model>CommerceGears\CookieConsent\Model\Config\Backend\Colour</backend_model>
                     <depends>
                         <field id="custom_colours">1</field>
                     </depends>
@@ -282,7 +282,7 @@
                 <field id="text" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Text</label>
                     <comment>Hex colour, for example #333333.</comment>
-                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Colour</backend_model>
+                    <backend_model>CommerceGears\CookieConsent\Model\Config\Backend\Colour</backend_model>
                     <depends>
                         <field id="custom_colours">1</field>
                     </depends>
@@ -290,7 +290,7 @@
                 <field id="button_background" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Button Background</label>
                     <comment>Hex colour, for example #1979c3.</comment>
-                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Colour</backend_model>
+                    <backend_model>CommerceGears\CookieConsent\Model\Config\Backend\Colour</backend_model>
                     <depends>
                         <field id="custom_colours">1</field>
                     </depends>
@@ -298,7 +298,7 @@
                 <field id="button_text" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Button Text</label>
                     <comment>Hex colour, for example #ffffff.</comment>
-                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Colour</backend_model>
+                    <backend_model>CommerceGears\CookieConsent\Model\Config\Backend\Colour</backend_model>
                     <depends>
                         <field id="custom_colours">1</field>
                     </depends>
@@ -306,7 +306,7 @@
                 <field id="link" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Links and Switches</label>
                     <comment>Hex colour of links and active switches, for example #1979c3.</comment>
-                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\Colour</backend_model>
+                    <backend_model>CommerceGears\CookieConsent\Model\Config\Backend\Colour</backend_model>
                     <depends>
                         <field id="custom_colours">1</field>
                     </depends>
@@ -314,14 +314,14 @@
                 <field id="font_family" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Font Family</label>
                     <comment>Optional CSS font-family, for example "Open Sans", sans-serif. Empty uses the theme font.</comment>
-                    <backend_model>Softaware\CookieConsent\Model\Config\Backend\FontFamily</backend_model>
+                    <backend_model>CommerceGears\CookieConsent\Model\Config\Backend\FontFamily</backend_model>
                 </field>
             </group>
             <group id="log" translate="label" sortOrder="70" showInDefault="1" showInWebsite="1">
                 <label>Consent Log</label>
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>Record Consent Choices</label>
-                    <comment>Stores each choice with a random visitor ID, time, categories, consent version and a keyed hash of the IP address. No names, emails or raw IP addresses are stored. View them under Softaware &gt; Cookie Consent &gt; Consent Log. Default: No.</comment>
+                    <comment>Stores each choice with a random visitor ID, time, categories, consent version and a keyed hash of the IP address. No names, emails or raw IP addresses are stored. View them under CommerceGears &gt; Cookie Consent &gt; Consent Log. Default: No.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="anonymise_ip" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" canRestore="1">

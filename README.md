@@ -1,6 +1,6 @@
-# Softaware Cookie Consent for Magento 2
+# CommerceGears Cookie Consent for Magento 2
 
-`softaware/module-cookie-consent` (`Softaware_CookieConsent`)
+`commercegears/module-cookie-consent` (`CommerceGears_CookieConsent`)
 
 A cookie banner and preferences centre with Google Consent Mode v2, consent-gated third-party scripts and an optional
 consent log. Works on Luma (and Blank-based themes) and Hyvä, with full-page cache.
@@ -15,7 +15,7 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
   Marketing. Preferences and Marketing can be hidden. Add your own categories (code, name, description, Google consent
   types). All texts are store-view settings.
 - **Change of mind**: "Cookie settings" link in the footer, a floating button, the CMS widget
-  *Softaware Cookie Settings Link*, or any link to `#cookie-settings` (or element with `data-sw-cc-open`).
+  *CommerceGears Cookie Settings Link*, or any link to `#cookie-settings` (or element with `data-sw-cc-open`).
 - **Storage**: first-party cookie `sw_consent` = `{"v": version, "id": random UUID, "ts": unix time, "c": [categories]}`.
   Increase the consent version to ask everybody again; consent expires after the configured number of days.
   Withdrawing a category reloads the page so scripts that already ran are gone.
@@ -26,10 +26,10 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
   Analytics → `analytics_storage`; Marketing → `ad_storage`, `ad_user_data`, `ad_personalization`.
 - **dataLayer event** on every page with stored consent and on every choice:
   ```js
-  {event: 'softaware_consent_update', sw_consent_trigger: 'stored'|'user',
+  {event: 'commercegears_consent_update', sw_consent_trigger: 'stored'|'user',
    sw_consent: {necessary: 'granted', analytics: 'denied', ...}, sw_consent_categories: 'necessary,analytics', sw_consent_version: 1}
   ```
-- **Consent-gated scripts** (Softaware > Cookie Consent > Third-party Scripts): paste a vendor snippet, choose category,
+- **Consent-gated scripts** (CommerceGears > Cookie Consent > Third-party Scripts): paste a vendor snippet, choose category,
   position (head / end of body) and store views. `<script>` tags are rendered as `type="text/plain" data-sw-consent="…"`,
   `img`/`iframe`/`source`/`video`/`audio`/`embed` sources as `data-sw-src` / `data-sw-srcset` and external stylesheets
   as `data-sw-href`, and are activated in order once the category is accepted. Remote hosts are added to the CSP
@@ -56,7 +56,7 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
 
 ## Configuration
 
-*Stores > Configuration > Softaware > Cookie Consent* (also *Softaware > Cookie Consent > Settings*).
+*Stores > Configuration > CommerceGears > Cookie Consent* (also *CommerceGears > Cookie Consent > Settings*).
 
 | Group | Notes |
 |---|---|
@@ -68,7 +68,7 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
 | Appearance | Custom colours, font family |
 | Consent Log | On/off, truncate IP before hashing, retention days |
 
-Admin pages: *Softaware > Cookie Consent > Third-party Scripts*, *Consent Log*. ACL: `Softaware_CookieConsent::scripts`,
+Admin pages: *CommerceGears > Cookie Consent > Third-party Scripts*, *Consent Log*. ACL: `CommerceGears_CookieConsent::scripts`,
 `::log`, `::log_delete`, `::config`. Note that `::scripts` lets a user add JavaScript to every storefront page, including
 checkout: give it only to people you would also let edit *Content > Design > Configuration*.
 
@@ -92,8 +92,8 @@ Markup that waits for consent:
 <iframe data-sw-consent="marketing" data-sw-src="https://www.youtube-nocookie.com/embed/..."></iframe>
 ```
 
-PHP: inject `Softaware\CookieConsent\Model\ScriptBlocker` (or use the view model
-`Softaware\CookieConsent\ViewModel\ScriptBlocker` in templates):
+PHP: inject `CommerceGears\CookieConsent\Model\ScriptBlocker` (or use the view model
+`CommerceGears\CookieConsent\ViewModel\ScriptBlocker` in templates):
 
 ```php
 echo $scriptBlocker->block($vendorHtml, 'marketing');          // converts script/iframe/img
@@ -105,15 +105,15 @@ Server-side checks of the cookie are deliberately not offered: pages are full-pa
 
 ## CLI
 
-- `bin/magento softaware:cookie-consent:bump-version` – increase the consent version in every scope where it is set and
+- `bin/magento commercegears:cookie-consent:bump-version` – increase the consent version in every scope where it is set and
   clean config + full-page cache.
-- `bin/magento softaware:cookie-consent:log:clean [--days=N]` – delete old log entries (the cron does this daily at 03:17).
+- `bin/magento commercegears:cookie-consent:log:clean [--days=N]` – delete old log entries (the cron does this daily at 03:17).
 
 ## Compatibility
 
 Magento Open Source / Adobe Commerce 2.4.7–2.4.9, PHP 8.2–8.5. Luma/Blank and Hyvä 1.3+ (templates in
 `view/frontend/templates/hyva`, Tailwind classes registered through `hyva_config_generate_before`). Checkout on Hyvä
-uses the Luma checkout and therefore the Luma banner. Requires `softaware/module-core`.
+uses the Luma checkout and therefore the Luma banner. Requires `commercegears/module-core`.
 
 ## Limitations
 

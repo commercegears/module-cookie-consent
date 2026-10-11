@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Observer;
+namespace CommerceGears\CookieConsent\Observer;
 
 use Magento\Framework\Component\ComponentRegistrar;
 use Magento\Framework\Event\Observer;
@@ -23,7 +23,7 @@ class RegisterModuleForHyvaConfig implements ObserverInterface
     {
         $config = $observer->getData('config');
         $extensions = $config->hasData('extensions') ? $config->getData('extensions') : [];
-        $path = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'Softaware_CookieConsent');
+        $path = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'CommerceGears_CookieConsent');
         $extensions[] = ['src' => substr($path, strlen(BP) + 1)];
         $config->setData('extensions', $extensions);
     }

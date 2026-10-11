@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Block\Adminhtml;
+namespace CommerceGears\CookieConsent\Block\Adminhtml;
 
 use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Template\Context;
@@ -20,7 +20,7 @@ use Magento\Framework\App\ResourceConnection;
 class GridIntro extends Template
 {
     /** @var string */
-    protected $_template = 'Softaware_CookieConsent::grid-intro.phtml';
+    protected $_template = 'CommerceGears_CookieConsent::grid-intro.phtml';
 
     private ?bool $empty = null;
 

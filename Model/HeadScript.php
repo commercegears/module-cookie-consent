@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Model;
+namespace CommerceGears\CookieConsent\Model;
 
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\View\Helper\SecureHtmlRenderer;
@@ -12,7 +12,7 @@ use Magento\Framework\View\Helper\SecureHtmlRenderer;
 /**
  * Builds the inline script printed at the very top of <head>:
  * Google Consent Mode v2 defaults, the stored consent (if any) as an immediate update,
- * the softaware_consent_update dataLayer event and a small window.SwConsent stub API.
+ * the commercegears_consent_update dataLayer event and a small window.SwConsent stub API.
  */
 class HeadScript
 {
@@ -108,7 +108,7 @@ class HeadScript
         var cats = {};
         c.categories.forEach(function (code) { cats[code] = has(stored.c, code) ? 'granted' : 'denied'; });
         dl.push({
-            event: 'softaware_consent_update',
+            event: 'commercegears_consent_update',
             sw_consent_trigger: 'stored',
             sw_consent: cats,
             sw_consent_categories: stored.c.join(','),

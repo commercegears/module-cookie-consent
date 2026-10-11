@@ -1,13 +1,13 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Model\Config\Source;
+namespace CommerceGears\CookieConsent\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
-use Softaware\CookieConsent\Model\Config;
+use CommerceGears\CookieConsent\Model\Config;
 
 /**
  * "Scripts in Design Configuration": leave unchanged, or the category whose consent they wait for.

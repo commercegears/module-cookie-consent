@@ -1,20 +1,20 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Controller\Adminhtml\Script;
+namespace CommerceGears\CookieConsent\Controller\Adminhtml\Script;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultInterface;
-use Softaware\CookieConsent\Api\ScriptRepositoryInterface;
+use CommerceGears\CookieConsent\Api\ScriptRepositoryInterface;
 
 class Delete extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_CookieConsent::scripts';
+    public const ADMIN_RESOURCE = 'CommerceGears_CookieConsent::scripts';
 
     public function __construct(Context $context, private readonly ScriptRepositoryInterface $scriptRepository)
     {

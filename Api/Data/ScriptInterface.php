@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Api\Data;
+namespace CommerceGears\CookieConsent\Api\Data;
 
 /**
  * A third-party script/snippet that only runs after the visitor accepts its cookie category.

@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Block\Adminhtml\Script\Edit;
+namespace CommerceGears\CookieConsent\Block\Adminhtml\Script\Edit;
 
 use Magento\Backend\Block\Widget\Context;
 

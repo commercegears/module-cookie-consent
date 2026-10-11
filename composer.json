@@ -1,12 +1,12 @@
 {
-    "name": "softaware/module-cookie-consent",
+    "name": "commercegears/module-cookie-consent",
     "description": "Cookie consent banner and preferences centre with Google Consent Mode v2, consent-based script blocking and an optional consent log. Works on Luma and Hyvä.",
     "type": "magento2-module",
     "license": "proprietary",
     "require": {
         "php": "~8.2.0||~8.3.0||~8.4.0||~8.5.0",
         "magento/framework": "~103.0.7",
-        "softaware/module-core": "^1.3",
+        "commercegears/module-core": "^2.0",
         "magento/module-backend": "*",
         "magento/module-config": "*",
         "magento/module-cookie": "*",
@@ -19,14 +19,17 @@
     },
     "suggest": {
         "hyva-themes/magento2-default-theme": "Hyvä storefront support (templates included)",
-        "softaware/module-ga4-gtm": "GA4 ecommerce tracking and GTM that respects the consent set here"
+        "commercegears/module-ga4-gtm": "^2.0"
     },
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "Softaware\\CookieConsent\\": ""
+            "CommerceGears\\CookieConsent\\": ""
         }
+    },
+    "replace": {
+        "softaware/module-cookie-consent": "*"
     }
 }

@@ -3,7 +3,7 @@
     <update handle="styles"/>
     <body>
         <referenceContainer name="content">
-            <uiComponent name="softaware_cookieconsent_script_form"/>
+            <uiComponent name="commercegears_cookieconsent_script_form"/>
         </referenceContainer>
     </body>
 </page>

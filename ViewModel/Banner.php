@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\ViewModel;
+namespace CommerceGears\CookieConsent\ViewModel;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Escaper;
@@ -13,7 +13,7 @@ use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\CookieConsent\Model\Config;
+use CommerceGears\CookieConsent\Model\Config;
 
 /**
  * Data for the banner / preferences templates (Luma and Hyvä). Everything here is store-level config,

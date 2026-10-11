@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  *
  * Cookie banner + preferences window (Luma / blank based themes).
  * Markup contract used by consent.js: #sw-cc root, [data-sw-cc-banner], [data-sw-cc-modal], [data-sw-cc-dialog],
@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
-use Softaware\CookieConsent\ViewModel\Banner;
+use CommerceGears\CookieConsent\ViewModel\Banner;
 
 /** @var Template $block */
 /** @var Escaper $escaper */
@@ -122,4 +122,4 @@ $rootClasses = 'sw-cc sw-cc--' . $layout . ' sw-cc--' . $position . ($vm->hasCus
         </button>
     <?php endif; ?>
 </div>
-<script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Softaware_CookieConsent::js/consent.js')) ?>" defer></script>
+<script src="<?= $escaper->escapeUrl($block->getViewFileUrl('CommerceGears_CookieConsent::js/consent.js')) ?>" defer></script>

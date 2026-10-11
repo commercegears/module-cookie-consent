@@ -1,11 +1,14 @@
 # Changelog
 
+## 2.0.0 (2026-10-11)
+- Improvement: renamed to CommerceGears (new Composer package, admin menu and settings paths)
+
 ## 1.3.4 (2026-10-11)
 - Fix: with Preferences hidden, the personalisation consent now stays denied.
 - Fix: the default banner message no longer mentions advertising, so it stays true when Marketing is hidden.
 - Improvement: box banner shows "Reject all" and "Accept all" side by side at the same width on Luma and Hyvä.
 - Improvement: settings are checked when saved: number ranges (expiry up to 730 days) and plain-text labels.
-- Improvement: requires Softaware Core 1.3.
+- Improvement: requires CommerceGears Core 1.3.
 
 ## 1.3.3 (2026-10-10)
 - Fix: Save and Save and Continue Edit on the script form no longer open a 404 page instead of saving.
@@ -23,7 +26,7 @@
 - Improvement: every setting has a short comment with its default.
 
 ## 1.2.0 (2026-10-06)
-- Improvement: requires Softaware Core instead of Softaware Base; menu and permissions move under "Softaware".
+- Improvement: requires CommerceGears Core instead of CommerceGears Base; menu and permissions move under "CommerceGears".
 
 ## 1.1.0 (2026-10-06)
 - New: scripts pasted into Content > Design > Configuration can wait for a cookie category.

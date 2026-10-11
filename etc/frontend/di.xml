@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Framework\View\Page\Config\Renderer">
-        <plugin name="softaware_cookieconsent_head_defaults" type="Softaware\CookieConsent\Plugin\PrependConsentDefaults" sortOrder="10"/>
+        <plugin name="commercegears_cookieconsent_head_defaults" type="CommerceGears\CookieConsent\Plugin\PrependConsentDefaults" sortOrder="10"/>
     </type>
     <type name="Magento\Cookie\Helper\Cookie">
-        <plugin name="softaware_cookieconsent_disable_native_notice" type="Softaware\CookieConsent\Plugin\DisableNativeCookieNotice"/>
+        <plugin name="commercegears_cookieconsent_disable_native_notice" type="CommerceGears\CookieConsent\Plugin\DisableNativeCookieNotice"/>
     </type>
     <type name="Magento\Framework\View\Page\Config">
-        <plugin name="softaware_cookieconsent_gate_design_head" type="Softaware\CookieConsent\Plugin\GateDesignScripts"/>
+        <plugin name="commercegears_cookieconsent_gate_design_head" type="CommerceGears\CookieConsent\Plugin\GateDesignScripts"/>
     </type>
     <type name="Magento\Theme\Block\Html\Footer">
-        <plugin name="softaware_cookieconsent_gate_design_footer" type="Softaware\CookieConsent\Plugin\GateDesignScripts"/>
+        <plugin name="commercegears_cookieconsent_gate_design_footer" type="CommerceGears\CookieConsent\Plugin\GateDesignScripts"/>
     </type>
 </config>

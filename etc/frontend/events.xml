@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="hyva_config_generate_before">
-        <observer name="softaware_cookieconsent_hyva_config" instance="Softaware\CookieConsent\Observer\RegisterModuleForHyvaConfig"/>
+        <observer name="commercegears_cookieconsent_hyva_config" instance="CommerceGears\CookieConsent\Observer\RegisterModuleForHyvaConfig"/>
     </event>
 </config>

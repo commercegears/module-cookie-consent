@@ -1,17 +1,17 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\ViewModel;
+namespace CommerceGears\CookieConsent\ViewModel;
 
 use Magento\Framework\View\Element\Block\ArgumentInterface;
-use Softaware\CookieConsent\Model\ScriptBlocker as Blocker;
+use CommerceGears\CookieConsent\Model\ScriptBlocker as Blocker;
 
 /**
  * Template helper for other modules and themes:
- *   <?= $viewModels->require(\Softaware\CookieConsent\ViewModel\ScriptBlocker::class)->block($html, 'marketing') ?>
+ *   <?= $viewModels->require(\CommerceGears\CookieConsent\ViewModel\ScriptBlocker::class)->block($html, 'marketing') ?>
  */
 class ScriptBlocker implements ArgumentInterface
 {

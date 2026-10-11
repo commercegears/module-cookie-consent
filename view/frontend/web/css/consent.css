@@ -1,4 +1,4 @@
-/* Softaware Cookie Consent - Luma / blank based themes. Buttons use the theme's .action.primary styles. */
+/* CommerceGears Cookie Consent - Luma / blank based themes. Buttons use the theme's .action.primary styles. */
 .sw-cc { font-family: var(--sw-cc-font, inherit); }
 .sw-cc [hidden], .sw-cc[hidden] { display: none !important; }
 .sw-cc-panel { background: var(--sw-cc-bg, #fff); color: var(--sw-cc-text, #333); box-sizing: border-box; }

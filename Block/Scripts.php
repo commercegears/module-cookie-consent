@@ -1,20 +1,20 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Block;
+namespace CommerceGears\CookieConsent\Block;
 
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\View\Element\AbstractBlock;
 use Magento\Framework\View\Element\Context;
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\CookieConsent\Api\Data\ScriptInterface;
-use Softaware\CookieConsent\Api\ScriptRepositoryInterface;
-use Softaware\CookieConsent\Model\Config;
-use Softaware\CookieConsent\Model\Script;
-use Softaware\CookieConsent\Model\ScriptBlocker;
+use CommerceGears\CookieConsent\Api\Data\ScriptInterface;
+use CommerceGears\CookieConsent\Api\ScriptRepositoryInterface;
+use CommerceGears\CookieConsent\Model\Config;
+use CommerceGears\CookieConsent\Model\Script;
+use CommerceGears\CookieConsent\Model\ScriptBlocker;
 
 /**
  * Prints the admin-managed third-party scripts for one position (layout argument "position").

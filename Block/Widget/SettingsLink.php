@@ -1,23 +1,23 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Block\Widget;
+namespace CommerceGears\CookieConsent\Block\Widget;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Widget\Block\BlockInterface;
-use Softaware\CookieConsent\Model\Config;
+use CommerceGears\CookieConsent\Model\Config;
 
 /**
- * CMS widget "Softaware Cookie Settings Link".
+ * CMS widget "CommerceGears Cookie Settings Link".
  */
 class SettingsLink extends Template implements BlockInterface
 {
     /** @var string */
-    protected $_template = 'Softaware_CookieConsent::widget/link.phtml';
+    protected $_template = 'CommerceGears_CookieConsent::widget/link.phtml';
 
     public function __construct(Context $context, private readonly Config $config, array $data = [])
     {

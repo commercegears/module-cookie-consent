@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Controller\Log;
+namespace CommerceGears\CookieConsent\Controller\Log;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\CsrfAwareActionInterface;
@@ -16,7 +16,7 @@ use Magento\Framework\Data\Form\FormKey\Validator as FormKeyValidator;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 use Psr\Log\LoggerInterface;
-use Softaware\CookieConsent\Model\ConsentLogger;
+use CommerceGears\CookieConsent\Model\ConsentLogger;
 
 /**
  * POST swconsent/log/save: records a consent choice (only when the consent log is enabled).
@@ -50,7 +50,7 @@ class Save implements HttpPostActionInterface, CsrfAwareActionInterface
         } catch (LocalizedException $e) {
             return $result->setHttpResponseCode(400)->setData(['success' => false, 'message' => $e->getMessage()]);
         } catch (\Throwable $e) {
-            $this->logger->error('Softaware_CookieConsent: could not log consent: ' . $e->getMessage());
+            $this->logger->error('CommerceGears_CookieConsent: could not log consent: ' . $e->getMessage());
             return $result->setHttpResponseCode(500)->setData(['success' => false]);
         }
     }

@@ -1,8 +1,8 @@
 # Cookie Consent for Magento 2: FAQ
 
 **Is Cookie Consent free?**
-Yes. The module is free to download from softawarecommerce.com and is installed with Composer like our other
-modules. It needs `softaware/module-core`, which Composer installs automatically.
+Yes. The module is free to download from commercegears.com and is installed with Composer like our other
+modules. It needs `commercegears/module-core`, which Composer installs automatically.
 
 **Will this module make my shop legally compliant?**
 No module can promise that on its own. Cookie Consent gives you the tools: a banner with "Accept all", "Reject all"
@@ -11,7 +11,7 @@ choices. Whether your set-up meets the rules that apply to you depends on which 
 and what your cookie policy says. Ask your legal adviser if you are unsure.
 
 **Which scripts are held back until the visitor agrees?**
-Snippets you add under **Softaware > Cookie Consent > Third-party Scripts**, any markup with the `data-sw-consent`
+Snippets you add under **CommerceGears > Cookie Consent > Third-party Scripts**, any markup with the `data-sw-consent`
 attribute, and (when you choose a category under **General > Scripts in Design Configuration**) the scripts in
 **Content > Design > Configuration** (HTML Head and Footer). Scripts hard-coded in templates or CMS blocks are not
 changed automatically: move them to Third-party Scripts or add the `data-sw-consent` markup. The settings page and the
@@ -20,7 +20,7 @@ Third-party Scripts grid list every Design Configuration script that still loads
 **Does it work with Google Tag Manager and Google Consent Mode v2?**
 Yes. With Consent Mode switched on, `gtag('consent', 'default', ...)` is printed directly after the page title,
 before any CSS, JavaScript or tag manager. After a choice, and on every later page for returning visitors,
-`gtag('consent', 'update', ...)` is sent. A dataLayer event `softaware_consent_update` with the accepted categories
+`gtag('consent', 'update', ...)` is sent. A dataLayer event `commercegears_consent_update` with the accepted categories
 is pushed as well, so you can use it as a GTM trigger.
 
 **Does it work with full-page cache?**
@@ -32,12 +32,12 @@ Yes. Hyvä templates (Tailwind, Hyvä 1.3+) are included and picked automaticall
 have their own templates. On Hyvä the checkout uses the Luma checkout, so the Luma banner appears there.
 
 **How do visitors change their mind?**
-Through the "Cookie settings" link in the footer, a floating button, the CMS widget "Softaware Cookie Settings Link",
+Through the "Cookie settings" link in the footer, a floating button, the CMS widget "CommerceGears Cookie Settings Link",
 or any link to `#cookie-settings`. When a visitor withdraws a category, matching first-party cookies are deleted and
 the page reloads, so scripts that already ran stop.
 
 **How do I ask every visitor again, for example after adding a new tracking tool?**
-Increase **General > Consent Version**, or run `bin/magento softaware:cookie-consent:bump-version`. Visitors whose
+Increase **General > Consent Version**, or run `bin/magento commercegears:cookie-consent:bump-version`. Visitors whose
 stored choice has an older version see the banner again. Choices also expire after **Consent Expiry (Days)**
 (default 180).
 

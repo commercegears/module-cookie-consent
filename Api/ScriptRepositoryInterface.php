@@ -1,15 +1,15 @@
 <?php
 /**
- * Copyright © Softaware Commerce. All rights reserved.
+ * Copyright © CommerceGears. All rights reserved.
  */
 declare(strict_types=1);
 
-namespace Softaware\CookieConsent\Api;
+namespace CommerceGears\CookieConsent\Api;
 
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Softaware\CookieConsent\Api\Data\ScriptInterface;
+use CommerceGears\CookieConsent\Api\Data\ScriptInterface;
 
 interface ScriptRepositoryInterface
 {
