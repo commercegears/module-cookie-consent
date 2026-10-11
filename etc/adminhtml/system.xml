@@ -16,12 +16,12 @@
                 <field id="consent_version" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>Consent Version</label>
                     <comment>Stored with every visitor's choice. Increase it (for example after adding a new tracking tool) to ask every visitor again; also possible with bin/magento softaware:cookie-consent:bump-version. Default: 1.</comment>
-                    <validate>required-entry validate-digits validate-greater-than-zero</validate>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-99999</validate>
                 </field>
                 <field id="expiry_days" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>Consent Expiry (Days)</label>
                     <comment>After this many days the visitor is asked again. Default: 180 (6 months), a common choice in the UK and EU.</comment>
-                    <validate>required-entry validate-digits validate-greater-than-zero</validate>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-730</validate>
                 </field>
                 <field id="replace_native_notice" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Replace Magento Cookie Restriction Notice</label>
@@ -31,6 +31,7 @@
                 <field id="privacy_url" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Cookie / Privacy Policy URL</label>
                     <comment>URL key (for example privacy-policy-cookie-restriction-mode) or a full URL. Leave empty to hide the link.</comment>
+                    <validate>validate-no-html-tags</validate>
                 </field>
                 <field id="reopen_link" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>"Cookie Settings" Link</label>
@@ -78,30 +79,36 @@
                 <field id="title" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Title</label>
                     <comment>Heading of the banner. Default: We value your privacy.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
                 <field id="message" translate="label comment" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Message</label>
-                    <comment>Plain text. Basic tags (b, strong, em, a, br) are allowed.</comment>
+                    <comment>Plain text. Basic tags (b, strong, em, a, br) are allowed. Mention only the purposes of the categories you show.</comment>
                 </field>
                 <field id="accept_label" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>"Accept All" Button</label>
                     <comment>Default: Accept all.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
                 <field id="reject_label" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>"Reject All" Button</label>
                     <comment>Default: Reject all.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
                 <field id="settings_label" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>"Settings" Button</label>
                     <comment>Opens the preferences window. Default: Manage preferences.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
                 <field id="privacy_label" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Policy Link Text</label>
                     <comment>Shown when a Cookie / Privacy Policy URL is set (General). Default: Cookie policy.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
                 <field id="reopen_label" translate="label comment" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>"Cookie Settings" Link Text</label>
                     <comment>Text of the link that reopens the preferences window. Default: Cookie settings.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
             </group>
             <group id="modal" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -109,6 +116,7 @@
                 <field id="title" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Title</label>
                     <comment>Default: Cookie preferences.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
                 <field id="intro" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Introduction</label>
@@ -117,14 +125,17 @@
                 <field id="save_label" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>"Save Choices" Button</label>
                     <comment>Saves the switches as they are. Default: Save choices.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
                 <field id="always_on_label" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>"Always On" Text</label>
                     <comment>Shown instead of a switch for necessary cookies. Default: Always on.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
                 <field id="close_label" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Close Button (Screen Readers)</label>
                     <comment>Read out by screen readers for the close (X) button. Default: Close.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
             </group>
             <group id="categories" translate="label comment" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -133,19 +144,22 @@
                 <field id="necessary_label" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Necessary: Name</label>
                     <comment>Always on; visitors cannot switch it off. Default: Necessary.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
                 <field id="necessary_description" translate="label comment" type="textarea" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Necessary: Description</label>
                     <comment>Shown under the name in the preferences window.</comment>
+                    <validate>validate-no-html-tags</validate>
                 </field>
                 <field id="preferences_enabled" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Preferences: Show</label>
-                    <comment>When hidden, functionality_storage and personalization_storage are treated as necessary (granted).</comment>
+                    <comment>When hidden, functionality_storage is treated as necessary (granted) and personalization_storage stays denied.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="preferences_label" translate="label comment" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Preferences: Name</label>
                     <comment>Default: Preferences.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                     <depends>
                         <field id="preferences_enabled">1</field>
                     </depends>
@@ -153,6 +167,7 @@
                 <field id="preferences_description" translate="label comment" type="textarea" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Preferences: Description</label>
                     <comment>Shown under the name in the preferences window.</comment>
+                    <validate>validate-no-html-tags</validate>
                     <depends>
                         <field id="preferences_enabled">1</field>
                     </depends>
@@ -160,10 +175,12 @@
                 <field id="analytics_label" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Analytics: Name</label>
                     <comment>Default: Analytics.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                 </field>
                 <field id="analytics_description" translate="label comment" type="textarea" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Analytics: Description</label>
                     <comment>Shown under the name in the preferences window.</comment>
+                    <validate>validate-no-html-tags</validate>
                 </field>
                 <field id="marketing_enabled" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Marketing: Show</label>
@@ -173,6 +190,7 @@
                 <field id="marketing_label" translate="label comment" type="text" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Marketing: Name</label>
                     <comment>Default: Marketing.</comment>
+                    <validate>validate-no-html-tags maximum-length-100</validate>
                     <depends>
                         <field id="marketing_enabled">1</field>
                     </depends>
@@ -180,6 +198,7 @@
                 <field id="marketing_description" translate="label comment" type="textarea" sortOrder="42" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Marketing: Description</label>
                     <comment>Shown under the name in the preferences window.</comment>
+                    <validate>validate-no-html-tags</validate>
                     <depends>
                         <field id="marketing_enabled">1</field>
                     </depends>
@@ -206,7 +225,7 @@
                 <field id="wait_for_update" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Wait for Update (ms)</label>
                     <comment>How long Google tags wait for a consent update before sending pings. Default: 500.</comment>
-                    <validate>validate-digits validate-zero-or-greater</validate>
+                    <validate>validate-digits validate-digits-range digits-range-0-10000</validate>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>
@@ -316,7 +335,7 @@
                 <field id="retention_days" translate="label comment" type="text" sortOrder="30" showInDefault="1" canRestore="1">
                     <label>Keep Entries For (Days)</label>
                     <comment>Older entries are deleted by a daily cron job. 0 keeps entries forever. Default: 730 (2 years).</comment>
-                    <validate>validate-digits</validate>
+                    <validate>validate-digits validate-digits-range digits-range-0-3650</validate>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>

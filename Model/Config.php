@@ -188,8 +188,9 @@ class Config
 
     /**
      * Consent type => category codes that must all be accepted for the type to be granted.
-     * Types of hidden built-in categories: preferences fall back to "necessary"; marketing types stay denied
-     * unless a custom category is mapped to them.
+     * Types of hidden built-in categories: with Preferences hidden, functionality_storage follows "necessary" and
+     * personalization_storage stays denied; marketing types stay denied. A custom category mapped to a type
+     * still controls it.
      *
      * @return array<string, string[]>
      */
@@ -202,9 +203,9 @@ class Config
             }
         }
         if (!$this->getFlag('categories/preferences_enabled', $store)) {
-            foreach (self::CONSENT_TYPES[self::CATEGORY_PREFERENCES] as $type) {
-                $map[$type] = [self::CATEGORY_NECESSARY];
-            }
+            // Settings such as language or currency count as necessary; personalisation never does.
+            $map['functionality_storage'] = [self::CATEGORY_NECESSARY];
+            $map['personalization_storage'] = [];
         }
         if (!$this->getFlag('categories/marketing_enabled', $store)) {
             foreach (self::CONSENT_TYPES[self::CATEGORY_MARKETING] as $type) {
@@ -218,7 +219,7 @@ class Config
         }
         foreach ($map as $type => $categories) {
             if ($categories === []) {
-                // Marketing is hidden and no custom category controls the type: never granted.
+                // Hidden category and no custom category controls the type: never granted.
                 $map[$type] = ['__never__'];
             }
         }

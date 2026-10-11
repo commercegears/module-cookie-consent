@@ -23,6 +23,12 @@
 .sw-cc-actions, .sw-cc-dialog__footer { display: flex; flex-wrap: wrap; gap: 10px; flex: 0 0 auto; }
 .sw-cc .sw-cc-btn { margin: 0; white-space: nowrap; }
 .sw-cc--box .sw-cc-actions .sw-cc-btn { flex: 1 1 auto; }
+/* Box: "Reject all" and "Accept all" side by side with the same width, "Manage preferences" below them. */
+@media (min-width: 768px) {
+    .sw-cc--box .sw-cc-actions { display: grid; grid-template-columns: 1fr 1fr; }
+    .sw-cc--box .sw-cc-actions [data-sw-cc-action="settings"] { grid-column: 1 / -1; order: 3; }
+    .sw-cc--box .sw-cc-actions > :nth-child(2):last-child { grid-column: 1 / -1; }
+}
 
 .sw-cc-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, .5); z-index: 9991; }
 .sw-cc-modal { position: fixed; inset: 0; z-index: 9995; display: flex; align-items: center; justify-content: center; padding: 16px; }

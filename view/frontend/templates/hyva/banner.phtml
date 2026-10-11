@@ -32,9 +32,14 @@ $bannerClasses = [
 $innerClasses = $layout === 'bar'
     ? 'container flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8'
     : 'flex flex-col gap-4';
-$actionsClasses = $layout === 'bar'
-    ? 'flex flex-col-reverse gap-2 sm:flex-row sm:flex-wrap lg:shrink-0 lg:flex-nowrap'
-    : 'flex flex-col-reverse gap-2 sm:flex-row sm:flex-wrap [&>*]:grow';
+$isBox = $layout !== 'bar';
+// Box: "Reject all" and "Accept all" side by side with the same width, "Manage preferences" below them.
+$actionsClasses = $isBox
+    ? 'grid grid-cols-1 gap-2 sm:grid-cols-2'
+    : 'flex flex-col-reverse gap-2 sm:flex-row sm:flex-wrap lg:shrink-0 lg:flex-nowrap';
+$settingsOrder = $isBox ? ' order-3 sm:col-span-2' : '';
+$rejectOrder = $isBox ? ' order-2 sm:order-1' : '';
+$acceptOrder = $isBox ? ' order-1 sm:order-2' . ($vm->showReject() ? '' : ' sm:col-span-2') : '';
 $switchClasses = 'sw-cc-switch relative h-6 w-11 shrink-0 cursor-pointer appearance-none rounded-full bg-gray-300 '
     . 'transition-colors checked:bg-primary disabled:cursor-not-allowed disabled:opacity-60 '
     . "before:absolute before:left-0.5 before:top-0.5 before:h-5 before:w-5 before:rounded-full before:bg-white before:shadow before:transition-transform before:content-[''] "
@@ -68,15 +73,15 @@ $switchClasses = 'sw-cc-switch relative h-6 w-11 shrink-0 cursor-pointer appeara
                 </p>
             </div>
             <div class="<?= $escaper->escapeHtmlAttr($actionsClasses) ?>">
-                <button type="button" class="sw-cc-btn sw-cc-btn--secondary btn btn-secondary justify-center whitespace-nowrap" data-sw-cc-action="settings">
+                <button type="button" class="sw-cc-btn sw-cc-btn--secondary btn btn-secondary justify-center whitespace-nowrap<?= /* @noEscape */ $settingsOrder ?>" data-sw-cc-action="settings">
                     <?= $escaper->escapeHtml($vm->text('banner/settings_label')) ?>
                 </button>
                 <?php if ($vm->showReject()): ?>
-                    <button type="button" class="sw-cc-btn btn btn-primary justify-center whitespace-nowrap" data-sw-cc-action="reject">
+                    <button type="button" class="sw-cc-btn btn btn-primary justify-center whitespace-nowrap<?= /* @noEscape */ $rejectOrder ?>" data-sw-cc-action="reject">
                         <?= $escaper->escapeHtml($vm->text('banner/reject_label')) ?>
                     </button>
                 <?php endif; ?>
-                <button type="button" class="sw-cc-btn btn btn-primary justify-center whitespace-nowrap" data-sw-cc-action="accept">
+                <button type="button" class="sw-cc-btn btn btn-primary justify-center whitespace-nowrap<?= /* @noEscape */ $acceptOrder ?>" data-sw-cc-action="accept">
                     <?= $escaper->escapeHtml($vm->text('banner/accept_label')) ?>
                 </button>
             </div>

@@ -17,7 +17,7 @@
                 <box_position>bottom-left</box_position>
                 <show_reject>1</show_reject>
                 <title>We value your privacy</title>
-                <message>We use cookies to make this site work and, with your permission, to understand how it is used and to show you relevant advertising. You can accept all cookies, reject the optional ones or choose which ones to allow.</message>
+                <message>We use necessary cookies to make this site work. With your permission we also use optional cookies, for example to understand how the site is used. You can accept all cookies, reject the optional ones or choose which ones to allow.</message>
                 <accept_label>Accept all</accept_label>
                 <reject_label>Reject all</reject_label>
                 <settings_label>Manage preferences</settings_label>

@@ -71,7 +71,7 @@ website, the log retention globally. Most fields show their default under the in
 | --- | --- |
 | Enabled | Shows the banner and holds back the scripts and categories set up here until the visitor agrees. Default: No. |
 | Consent Version | Stored with every visitor's choice. Increase it to ask every visitor again (also possible from the command line, section 10). Default: 1. |
-| Consent Expiry (Days) | After this many days the visitor is asked again. Default: 180. |
+| Consent Expiry (Days) | After this many days the visitor is asked again (1 to 730). Default: 180. |
 | Replace Magento Cookie Restriction Notice | Hides Magento's own "Cookie Restriction Mode" notice while the module is enabled, so visitors see one banner. Default: Yes. |
 | Cookie / Privacy Policy URL | A URL key (for example `privacy-policy-cookie-restriction-mode`) or a full URL. Empty hides the link. |
 | "Cookie Settings" Link | How visitors reopen the preferences: **Footer link**, **Floating button**, **Footer link and floating button**, or **None** (widget or `#cookie-settings` links only). Default: Footer link. |
@@ -85,7 +85,7 @@ website, the log retention globally. Most fields show their default under the in
 | Layout | **Bar (full width)** or **Box**. Default: Bar. |
 | Position | Bar: **Bottom** or **Top**. Box: **Bottom left**, **Bottom right** or **Centre of the screen**. |
 | Show "Reject All" on the Banner | Shows the "Reject all" button next to "Accept all". Default: Yes. |
-| Title, Message | Heading and text. The message allows basic tags (b, strong, em, a, br). |
+| Title, Message | Heading and text. The message allows basic tags (b, strong, em, a, br); other texts are plain. The default message mentions only analytics, so it stays true when Preferences and Marketing are hidden. |
 | Button and link texts | "Accept All", "Reject All", "Settings" (opens the preferences window), policy link text and the "Cookie settings" link text. |
 
 ### Preferences Window
@@ -98,7 +98,7 @@ close button read out by screen readers.
 | Setting | What it does |
 | --- | --- |
 | Necessary: Name, Description | Always on; visitors cannot switch it off. |
-| Preferences: Show, Name, Description | When hidden, `functionality_storage` and `personalization_storage` are treated as necessary (granted). |
+| Preferences: Show, Name, Description | When hidden, `functionality_storage` is treated as necessary (granted) and `personalization_storage` stays denied. |
 | Analytics: Name, Description | Always shown. |
 | Marketing: Show, Name, Description | When hidden, the `ad_*` consent types stay denied. |
 | Additional Categories | Your own categories: **Code** (lower-case letters, digits, underscores), **Name**, **Description** and optional **Google Consent Types** (comma-separated). A consent type is granted only when every category mapped to it is accepted. |
@@ -109,7 +109,7 @@ close button read out by screen readers.
 | Setting | What it does |
 | --- | --- |
 | Enabled | Prints `gtag('consent', 'default', ...)` at the top of the page head and sends `gtag('consent', 'update', ...)` when the visitor chooses. Default: Yes. |
-| Wait for Update (ms) | How long Google tags wait for a consent update. Default: 500. |
+| Wait for Update (ms) | How long Google tags wait for a consent update (0 to 10000). Default: 500. |
 | Redact Ads Data | Redacts ad click identifiers while `ad_storage` is denied. Default: Yes. |
 | URL Passthrough | Passes ad click information through page URLs when cookies are not allowed. Default: No. |
 | Regions Requiring Consent | Optional ISO 3166-2 codes, for example `GB, DE, US-CA`. Empty: denied defaults everywhere. The banner is still shown to every visitor. |
@@ -131,7 +131,7 @@ values), and optionally a **Font Family**.
 | --- | --- |
 | Record Consent Choices | Stores each choice (section 8). Default: No. |
 | Truncate IP Before Hashing | Removes the last part of the IP address (last octet for IPv4, last 80 bits for IPv6) before it is hashed. Default: Yes. |
-| Keep Entries For (Days) | Older entries are deleted by a daily cron job; 0 keeps them. Default: 730. |
+| Keep Entries For (Days) | Older entries are deleted by a daily cron job; 0 keeps them (up to 3650). Default: 730. |
 
 ## 5. Third-party Scripts
 
