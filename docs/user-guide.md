@@ -23,8 +23,8 @@ to your shop.
 
 | | |
 | --- | --- |
-| Magento | Open Source or Adobe Commerce 2.4.7 to 2.4.9 |
-| PHP | 8.2 to 8.5 |
+| Magento | Open Source or Adobe Commerce 2.4.6 to 2.4.9 |
+| PHP | 8.2 to 8.5 (Magento 2.4.6: PHP 8.2) |
 | Themes | Luma, Blank and themes based on them; Hyvä 1.3+ |
 | Other | `commercegears/module-core` (installed automatically) |
 

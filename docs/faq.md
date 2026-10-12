@@ -62,4 +62,4 @@ While the module is enabled, Magento's "Cookie Restriction Mode" notice is switc
 Cookie Restriction Notice**, default Yes), so visitors see one banner.
 
 **Which Magento and PHP versions are supported?**
-Magento Open Source and Adobe Commerce 2.4.7 to 2.4.9, PHP 8.2 to 8.5.
+Magento Open Source and Adobe Commerce 2.4.6 to 2.4.9, PHP 8.2 to 8.5 (Magento 2.4.6: PHP 8.2).
