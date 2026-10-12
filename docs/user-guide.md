@@ -31,7 +31,7 @@ to your shop.
 ## 2. Installation
 
 Cookie Consent is free. Install it with Composer from repo.commercegears.com, using the Composer keys from your
-account on commercegears.com (see https://commercegears.com/shop/composer-access/):
+account on commercegears.com (see https://commercegears.com/composer-access/):
 
 ```bash
 composer config repositories.commercegears composer https://repo.commercegears.com
