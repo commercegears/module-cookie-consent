@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.3 (2026-10-15)
+- Improvement: link and switch colours follow your Luma or Hyvä theme.
+- New: German translation of the remaining messages.
+
 ## 2.0.2 (2026-10-12)
 - Improvement: compatible with Magento 2.4.6 (PHP 8.2).
 
