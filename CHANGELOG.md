@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.4 (2026-10-23)
+- Improvement: the banner shows together with the page, not after the scripts load (better page speed).
+- Improvement: smaller banner on phones, with "Reject all" and "Accept all" side by side at the same size.
+
 ## 2.0.3 (2026-10-15)
 - Improvement: link and switch colours follow your Luma or Hyvä theme.
 - New: German translation of the remaining messages.

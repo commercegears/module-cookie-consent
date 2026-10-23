@@ -11,15 +11,19 @@
                 </arguments>
             </block>
         </referenceBlock>
-        <referenceContainer name="before.body.end">
+        <!-- The banner is fixed-positioned, so its place in the HTML does not change the layout. At the start of
+             <body> it is parsed and painted with the first screen (and comes first for keyboard and screen readers). -->
+        <referenceContainer name="after.body.start">
             <block class="Magento\Framework\View\Element\Template" name="commercegears.cookieconsent.banner"
                    template="CommerceGears_CookieConsent::banner.phtml" before="-">
                 <arguments>
                     <argument name="view_model" xsi:type="object">CommerceGears\CookieConsent\ViewModel\Banner</argument>
                 </arguments>
             </block>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
             <block class="CommerceGears\CookieConsent\Block\Scripts" name="commercegears.cookieconsent.scripts.body"
-                   after="commercegears.cookieconsent.banner">
+                   before="-">
                 <arguments>
                     <argument name="position" xsi:type="string">body_end</argument>
                 </arguments>

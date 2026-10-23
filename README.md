@@ -10,7 +10,9 @@ Documentation: [User guide](docs/user-guide.md) · [FAQ](docs/faq.md)
 ## Features
 
 - **Banner**: full-width bar (top/bottom) or box (bottom left/right, centre). "Accept all", "Reject all" (can be hidden,
-  not recommended in the UK/EU) and "Manage preferences" buttons, optional policy link.
+  not recommended in the UK/EU) and "Manage preferences" buttons, optional policy link. The banner is part of the
+  page HTML and is shown by a tiny inline script as soon as the page is parsed (no wait for JavaScript files; visitors
+  who already chose never see it flash). On phones "Reject all" and "Accept all" sit side by side to keep it compact.
 - **Preferences window**: one switch per category. Built-in categories: Necessary (always on), Preferences, Analytics,
   Marketing. Preferences and Marketing can be hidden. Add your own categories (code, name, description, Google consent
   types). All texts are store-view settings.

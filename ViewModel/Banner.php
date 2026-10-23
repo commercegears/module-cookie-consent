@@ -112,6 +112,20 @@ class Banner implements ArgumentInterface
     }
 
     /**
+     * Inline script printed right after the banner markup: it shows the banner (no valid choice stored) or the
+     * reopen button (choice stored) as soon as the HTML is parsed, instead of waiting for the deferred consent.js,
+     * so the banner paints with the page. The HTML stays the same for every visitor (full-page cache safe): the
+     * decision uses window.SwConsent.state from the head script. consent.js then wires the buttons as before.
+     */
+    public function getRevealScript(): string
+    {
+        return '(function(){var a=window.SwConsent,r=document.getElementById(\'sw-cc\');'
+            . 'if(!a||!r||a._ready){return;}'
+            . 'Array.prototype.forEach.call(r.querySelectorAll(a.state?\'[data-sw-cc-float]\''
+            . ':\'[data-sw-cc-banner],[data-sw-cc-banner-backdrop]\'),function(n){n.hidden=false;});})();';
+    }
+
+    /**
      * Banner-only settings for consent.js (the head script exposes the shared ones as window.swConsentConfig).
      */
     public function getJsConfig(): string

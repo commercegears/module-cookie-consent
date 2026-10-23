@@ -14,6 +14,7 @@ use CommerceGears\CookieConsent\ViewModel\Banner;
 /** @var Template $block */
 /** @var Escaper $escaper */
 /** @var Banner $vm */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
 $vm = $block->getData('view_model');
 if (!$vm || !$vm->isEnabled()) {
     return;
@@ -23,23 +24,25 @@ $position = $vm->getPosition();
 $privacyUrl = $vm->getPrivacyUrl();
 
 $bannerClasses = [
-    'bar-bottom' => 'fixed inset-x-0 bottom-0 shadow-[0_-2px_16px_rgba(0,0,0,0.15)] p-4 md:py-5 lg:pr-24',
-    'bar-top' => 'fixed inset-x-0 top-0 shadow-[0_2px_16px_rgba(0,0,0,0.15)] p-4 md:py-5 lg:pr-24',
-    'box-bottom-left' => 'fixed left-2 right-2 bottom-2 sm:right-auto sm:left-4 sm:bottom-4 sm:w-[28rem] rounded-lg shadow-2xl p-5 sm:p-6',
-    'box-bottom-right' => 'fixed left-2 right-2 bottom-2 sm:left-auto sm:right-4 sm:bottom-4 sm:w-[28rem] rounded-lg shadow-2xl p-5 sm:p-6',
-    'box-center' => 'fixed left-2 right-2 top-1/2 -translate-y-1/2 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:w-[30rem] rounded-lg shadow-2xl p-5 sm:p-6',
+    'bar-bottom' => 'fixed inset-x-0 bottom-0 shadow-[0_-2px_16px_rgba(0,0,0,0.15)] px-4 py-3 sm:p-4 md:py-5 lg:pr-24',
+    'bar-top' => 'fixed inset-x-0 top-0 shadow-[0_2px_16px_rgba(0,0,0,0.15)] px-4 py-3 sm:p-4 md:py-5 lg:pr-24',
+    'box-bottom-left' => 'fixed left-2 right-2 bottom-2 sm:right-auto sm:left-4 sm:bottom-4 sm:w-[28rem] rounded-lg shadow-2xl p-4 sm:p-6',
+    'box-bottom-right' => 'fixed left-2 right-2 bottom-2 sm:left-auto sm:right-4 sm:bottom-4 sm:w-[28rem] rounded-lg shadow-2xl p-4 sm:p-6',
+    'box-center' => 'fixed left-2 right-2 top-1/2 -translate-y-1/2 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:w-[30rem] rounded-lg shadow-2xl p-4 sm:p-6',
 ][$layout . '-' . $position] ?? 'fixed inset-x-0 bottom-0 p-4';
 $innerClasses = $layout === 'bar'
-    ? 'container flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8'
-    : 'flex flex-col gap-4';
+    ? 'container flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-center lg:gap-8'
+    : 'flex flex-col gap-3 sm:gap-4';
 $isBox = $layout !== 'bar';
-// Box: "Reject all" and "Accept all" side by side with the same width, "Manage preferences" below them.
+// "Reject all" and "Accept all" side by side with the same width, "Manage preferences" below them (box: always;
+// bar: on phones, so the banner covers less of the first screen; from sm up the bar keeps its single row).
 $actionsClasses = $isBox
-    ? 'grid grid-cols-1 gap-2 sm:grid-cols-2'
-    : 'flex flex-col-reverse gap-2 sm:flex-row sm:flex-wrap lg:shrink-0 lg:flex-nowrap';
-$settingsOrder = $isBox ? ' order-3 sm:col-span-2' : '';
-$rejectOrder = $isBox ? ' order-2 sm:order-1' : '';
-$acceptOrder = $isBox ? ' order-1 sm:order-2' . ($vm->showReject() ? '' : ' sm:col-span-2') : '';
+    ? 'grid grid-cols-2 gap-2'
+    : 'grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:flex-wrap lg:shrink-0 lg:flex-nowrap';
+$smReset = $isBox ? '' : ' sm:order-none';
+$settingsOrder = ' order-3 col-span-2' . $smReset;
+$rejectOrder = ' order-1' . $smReset;
+$acceptOrder = ' order-2' . $smReset . ($vm->showReject() ? '' : ' col-span-2');
 $switchClasses = 'sw-cc-switch relative h-6 w-11 shrink-0 cursor-pointer appearance-none rounded-full bg-gray-300 '
     . 'transition-colors checked:bg-primary disabled:cursor-not-allowed disabled:opacity-60 '
     . "before:absolute before:left-0.5 before:top-0.5 before:h-5 before:w-5 before:rounded-full before:bg-white before:shadow before:transition-transform before:content-[''] "
@@ -64,8 +67,8 @@ $switchClasses = 'sw-cc-switch relative h-6 w-11 shrink-0 cursor-pointer appeara
              data-sw-cc-banner hidden tabindex="-1" aria-labelledby="sw-cc-title" aria-describedby="sw-cc-desc">
         <div class="<?= $escaper->escapeHtmlAttr($innerClasses) ?>">
             <div class="grow">
-                <h2 id="sw-cc-title" class="mb-1 text-lg font-semibold leading-snug"><?= $escaper->escapeHtml($vm->text('banner/title')) ?></h2>
-                <p id="sw-cc-desc" class="text-sm leading-relaxed">
+                <h2 id="sw-cc-title" class="mb-1 text-base font-semibold leading-snug sm:text-lg"><?= $escaper->escapeHtml($vm->text('banner/title')) ?></h2>
+                <p id="sw-cc-desc" class="text-sm leading-snug sm:leading-relaxed">
                     <?= /* @noEscape */ $vm->richText('banner/message') ?>
                     <?php if ($privacyUrl): ?>
                         <a class="underline underline-offset-2 hover:no-underline" href="<?= $escaper->escapeUrl($privacyUrl) ?>"><?= $escaper->escapeHtml($vm->text('banner/privacy_label')) ?></a>
@@ -77,11 +80,11 @@ $switchClasses = 'sw-cc-switch relative h-6 w-11 shrink-0 cursor-pointer appeara
                     <?= $escaper->escapeHtml($vm->text('banner/settings_label')) ?>
                 </button>
                 <?php if ($vm->showReject()): ?>
-                    <button type="button" class="sw-cc-btn btn btn-primary justify-center whitespace-nowrap<?= /* @noEscape */ $rejectOrder ?>" data-sw-cc-action="reject">
+                    <button type="button" class="sw-cc-btn btn btn-primary justify-center text-center sm:whitespace-nowrap<?= /* @noEscape */ $rejectOrder ?>" data-sw-cc-action="reject">
                         <?= $escaper->escapeHtml($vm->text('banner/reject_label')) ?>
                     </button>
                 <?php endif; ?>
-                <button type="button" class="sw-cc-btn btn btn-primary justify-center whitespace-nowrap<?= /* @noEscape */ $acceptOrder ?>" data-sw-cc-action="accept">
+                <button type="button" class="sw-cc-btn btn btn-primary justify-center text-center sm:whitespace-nowrap<?= /* @noEscape */ $acceptOrder ?>" data-sw-cc-action="accept">
                     <?= $escaper->escapeHtml($vm->text('banner/accept_label')) ?>
                 </button>
             </div>
@@ -153,4 +156,6 @@ $switchClasses = 'sw-cc-switch relative h-6 w-11 shrink-0 cursor-pointer appeara
         </button>
     <?php endif; ?>
 </div>
+<?php /* Shows the banner without waiting for consent.js (see Banner::getRevealScript()). */ ?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', ['data-sw-cc-reveal' => '1'], $vm->getRevealScript(), false) ?>
 <script src="<?= $escaper->escapeUrl($block->getViewFileUrl('CommerceGears_CookieConsent::js/consent.js')) ?>" defer></script>

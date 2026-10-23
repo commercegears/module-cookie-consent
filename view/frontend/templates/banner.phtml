@@ -15,6 +15,7 @@ use CommerceGears\CookieConsent\ViewModel\Banner;
 /** @var Template $block */
 /** @var Escaper $escaper */
 /** @var Banner $vm */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
 $vm = $block->getData('view_model');
 if (!$vm || !$vm->isEnabled()) {
     return;
@@ -122,4 +123,6 @@ $rootClasses = 'sw-cc sw-cc--' . $layout . ' sw-cc--' . $position . ($vm->hasCus
         </button>
     <?php endif; ?>
 </div>
+<?php /* Shows the banner without waiting for consent.js (see Banner::getRevealScript()). */ ?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', ['data-sw-cc-reveal' => '1'], $vm->getRevealScript(), false) ?>
 <script src="<?= $escaper->escapeUrl($block->getViewFileUrl('CommerceGears_CookieConsent::js/consent.js')) ?>" defer></script>

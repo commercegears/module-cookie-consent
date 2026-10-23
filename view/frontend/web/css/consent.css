@@ -66,14 +66,21 @@
 body.sw-cc-modal-open { overflow: hidden; }
 
 @media (max-width: 767px) {
-    .sw-cc--bar .sw-cc-banner { padding: 16px; max-height: 80vh; overflow-y: auto; }
-    .sw-cc--bar .sw-cc-banner__inner { flex-direction: column; align-items: stretch; gap: 14px; }
-    .sw-cc-actions { flex-direction: column-reverse; }
-    .sw-cc-actions .sw-cc-btn, .sw-cc-dialog__footer .sw-cc-btn { flex: 1 1 100%; }
-    .sw-cc--box .sw-cc-banner { left: 8px !important; right: 8px; bottom: 8px; width: auto; max-width: none; padding: 18px; }
+    .sw-cc--bar .sw-cc-banner { padding: 12px 16px; max-height: 80vh; overflow-y: auto; }
+    .sw-cc--bar .sw-cc-banner__inner { flex-direction: column; align-items: stretch; gap: 12px; }
+    /* Phones: "Reject all" and "Accept all" side by side with the same width, "Manage preferences" below them. */
+    .sw-cc-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .sw-cc .sw-cc-actions .sw-cc-btn { white-space: normal; }
+    .sw-cc-actions [data-sw-cc-action="settings"] { grid-column: 1 / -1; order: 3; }
+    .sw-cc-actions > :nth-child(2):last-child { grid-column: 1 / -1; }
+    .sw-cc--box .sw-cc-actions { margin-top: 12px; }
+    .sw-cc-dialog__footer .sw-cc-btn { flex: 1 1 100%; }
+    .sw-cc--box .sw-cc-banner { left: 8px !important; right: 8px; bottom: 8px; width: auto; max-width: none; padding: 16px; }
     .sw-cc--box.sw-cc--center .sw-cc-banner { transform: translateY(-50%); }
     .sw-cc-dialog__header { padding: 16px 16px 8px; }
     .sw-cc-dialog__body { padding: 0 16px 8px; }
     .sw-cc-dialog__footer { padding: 12px 16px 16px; }
     .sw-cc-title { font-size: 1.7rem; }
+    .sw-cc-banner .sw-cc-title { font-size: 1.6rem; margin-bottom: .4rem; }
+    .sw-cc-banner .sw-cc-message { font-size: 1.3rem; line-height: 1.5; }
 }
