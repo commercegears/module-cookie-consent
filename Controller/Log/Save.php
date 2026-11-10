@@ -14,9 +14,9 @@ use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Data\Form\FormKey\Validator as FormKeyValidator;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 use Psr\Log\LoggerInterface;
 use CommerceGears\CookieConsent\Model\ConsentLogger;
+use CommerceGears\Core\Model\Http\ClientIp;
 
 /**
  * POST swconsent/log/save: records a consent choice (only when the consent log is enabled).
@@ -28,7 +28,7 @@ class Save implements HttpPostActionInterface, CsrfAwareActionInterface
         private readonly JsonFactory $jsonFactory,
         private readonly FormKeyValidator $formKeyValidator,
         private readonly ConsentLogger $consentLogger,
-        private readonly RemoteAddress $remoteAddress,
+        private readonly ClientIp $clientIp,
         private readonly LoggerInterface $logger
     ) {
     }
@@ -44,7 +44,7 @@ class Save implements HttpPostActionInterface, CsrfAwareActionInterface
                 (string)$this->request->getParam('action'),
                 $categories,
                 (int)$this->request->getParam('version'),
-                (string)$this->remoteAddress->getRemoteAddress()
+                $this->clientIp->getAddress()
             );
             return $result->setData(['success' => true, 'logged' => $logged]);
         } catch (LocalizedException $e) {

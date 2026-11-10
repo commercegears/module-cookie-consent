@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.5 (2026-11-10)
+- Fix: the consent log uses the visitor's real IP address, not one from a made-up proxy header.
+
 ## 2.0.4 (2026-10-23)
 - Improvement: the banner shows together with the page, not after the scripts load (better page speed).
 - Improvement: smaller banner on phones, with "Reject all" and "Accept all" side by side at the same size.
